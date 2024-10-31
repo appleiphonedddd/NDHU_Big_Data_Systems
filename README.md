@@ -65,7 +65,8 @@ filetree
 │   │   └── Mapper and reduce.png
 │   ├── Sorting.py
 │   └── Testcase
-│       └── wc_data1.txt
+│       ├── wc_data1.txt
+│       └── wc_data2.txt
 ├── build-image.sh
 ├── building_Hadoop.sh
 ├── config
@@ -80,10 +81,8 @@ filetree
 │   └── yarn-site.xml
 ├── Dockerfile
 ├── Install_docker.sh
-├── Install_miniconda.sh
 ├── LICENSE
 ├── README.md
-├── resize-cluster.sh
 └── start-container.sh
 ```
 
