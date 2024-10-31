@@ -83,7 +83,7 @@ filetree
 ./start-hadoop.sh
 ```
 
-3. Open new windows and show docker container ID
+3. Open new terminal and show docker container ID
 
 ```sh
 docker ps -a
