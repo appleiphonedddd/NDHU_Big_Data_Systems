@@ -140,10 +140,10 @@ $HADOOP_HOME/bin/hdfs dfs -cat /user/root/output/part-00000
 hdfs dfs -rm -r /user/root/output
 ```
 
-11. if you want to clear all container in Linux
+11. If you want to clear all container in Linux
 
 ```sh
-./docker-cmd.sh
+./docker-cmd.sh clear
 ```
 
 ### Frameworks Used
