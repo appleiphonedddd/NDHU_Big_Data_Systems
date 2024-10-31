@@ -1,19 +1,24 @@
-root@hadoop-master:~# $HADOOP_HOME/bin/hadoop jar /usr/local/hadoop/share/hadoop/tools/lib/hadoop-streaming-2.7.2.jar     -files /root/Mapper.py,/root/Reducer.py     -input /user/root/input/wc_data1.txt     -output /user/root/output     -mapper "python Mapper.py"     -reducer "python Reducer.py" 
-packageJobJar: [/tmp/hadoop-unjar2970774108379441443/] [] /tmp/streamjob4065437532461075553.jar tmpDir=null
-24/10/31 05:06:41 INFO client.RMProxy: Connecting to ResourceManager at hadoop-master/172.20.0.2:8032
-24/10/31 05:06:42 INFO client.RMProxy: Connecting to ResourceManager at hadoop-master/172.20.0.2:8032
-24/10/31 05:06:42 INFO mapred.FileInputFormat: Total input paths to process : 1
-24/10/31 05:06:42 INFO mapreduce.JobSubmitter: number of splits:2
-24/10/31 05:06:42 INFO mapreduce.JobSubmitter: Submitting tokens for job: job_1730349930877_0005
-24/10/31 05:06:42 INFO impl.YarnClientImpl: Submitted application application_1730349930877_0005
-24/10/31 05:06:42 INFO mapreduce.Job: The url to track the job: http://hadoop-master:8088/proxy/application_1730349930877_0005/
-24/10/31 05:06:42 INFO mapreduce.Job: Running job: job_1730349930877_0005
-24/10/31 05:06:47 INFO mapreduce.Job: Job job_1730349930877_0005 running in uber mode : false
-24/10/31 05:06:47 INFO mapreduce.Job:  map 0% reduce 0%
-24/10/31 05:06:52 INFO mapreduce.Job:  map 100% reduce 0%
-24/10/31 05:06:57 INFO mapreduce.Job:  map 100% reduce 100%
-24/10/31 05:06:58 INFO mapreduce.Job: Job job_1730349930877_0005 completed successfully
-24/10/31 05:06:58 INFO mapreduce.Job: Counters: 49
+root@hadoop-master:~# $HADOOP_HOME/bin/hadoop jar /usr/local/hadoop/share/hadoop/tools/lib/hadoop-streaming-2.7.2.jar \
+>     -files /root/Mapper.py,/root/Reducer.py \
+>     -input /user/root/input/wc_data1.txt \
+>     -output /user/root/output \
+>     -mapper "python Mapper.py" \
+>     -reducer "python Reducer.py"
+packageJobJar: [/tmp/hadoop-unjar5630642138691392262/] [] /tmp/streamjob2553437288804028472.jar tmpDir=null
+24/10/31 08:55:49 INFO client.RMProxy: Connecting to ResourceManager at hadoop-master/172.20.0.2:8032
+24/10/31 08:55:49 INFO client.RMProxy: Connecting to ResourceManager at hadoop-master/172.20.0.2:8032
+24/10/31 08:55:49 INFO mapred.FileInputFormat: Total input paths to process : 1
+24/10/31 08:55:49 INFO mapreduce.JobSubmitter: number of splits:2
+24/10/31 08:55:50 INFO mapreduce.JobSubmitter: Submitting tokens for job: job_1730364799437_0001
+24/10/31 08:55:50 INFO impl.YarnClientImpl: Submitted application application_1730364799437_0001
+24/10/31 08:55:50 INFO mapreduce.Job: The url to track the job: http://hadoop-master:8088/proxy/application_1730364799437_0001/
+24/10/31 08:55:50 INFO mapreduce.Job: Running job: job_1730364799437_0001
+24/10/31 08:55:56 INFO mapreduce.Job: Job job_1730364799437_0001 running in uber mode : false
+24/10/31 08:55:56 INFO mapreduce.Job:  map 0% reduce 0%
+24/10/31 08:56:00 INFO mapreduce.Job:  map 100% reduce 0%
+24/10/31 08:56:05 INFO mapreduce.Job:  map 100% reduce 100%
+24/10/31 08:56:05 INFO mapreduce.Job: Job job_1730364799437_0001 completed successfully
+24/10/31 08:56:05 INFO mapreduce.Job: Counters: 49
 	File System Counters
 		FILE: Number of bytes read=97
 		FILE: Number of bytes written=362041
@@ -29,14 +34,14 @@ packageJobJar: [/tmp/hadoop-unjar2970774108379441443/] [] /tmp/streamjob40654375
 		Launched map tasks=2
 		Launched reduce tasks=1
 		Data-local map tasks=2
-		Total time spent by all maps in occupied slots (ms)=5358
-		Total time spent by all reduces in occupied slots (ms)=2172
-		Total time spent by all map tasks (ms)=5358
-		Total time spent by all reduce tasks (ms)=2172
-		Total vcore-milliseconds taken by all map tasks=5358
-		Total vcore-milliseconds taken by all reduce tasks=2172
-		Total megabyte-milliseconds taken by all map tasks=5486592
-		Total megabyte-milliseconds taken by all reduce tasks=2224128
+		Total time spent by all maps in occupied slots (ms)=4996
+		Total time spent by all reduces in occupied slots (ms)=2162
+		Total time spent by all map tasks (ms)=4996
+		Total time spent by all reduce tasks (ms)=2162
+		Total vcore-milliseconds taken by all map tasks=4996
+		Total vcore-milliseconds taken by all reduce tasks=2162
+		Total megabyte-milliseconds taken by all map tasks=5115904
+		Total megabyte-milliseconds taken by all reduce tasks=2213888
 	Map-Reduce Framework
 		Map input records=1
 		Map output records=10
@@ -53,10 +58,10 @@ packageJobJar: [/tmp/hadoop-unjar2970774108379441443/] [] /tmp/streamjob40654375
 		Shuffled Maps =2
 		Failed Shuffles=0
 		Merged Map outputs=2
-		GC time elapsed (ms)=66
-		CPU time spent (ms)=1290
-		Physical memory (bytes) snapshot=863113216
-		Virtual memory (bytes) snapshot=2687275008
+		GC time elapsed (ms)=56
+		CPU time spent (ms)=1400
+		Physical memory (bytes) snapshot=858910720
+		Virtual memory (bytes) snapshot=2700050432
 		Total committed heap usage (bytes)=603979776
 	Shuffle Errors
 		BAD_ID=0
@@ -69,8 +74,8 @@ packageJobJar: [/tmp/hadoop-unjar2970774108379441443/] [] /tmp/streamjob40654375
 		Bytes Read=75
 	File Output Format Counters 
 		Bytes Written=64
-24/10/31 05:06:58 INFO streaming.StreamJob: Output directory: /user/root/output
-root@hadoop-master:~# $HADOOP_HOME/bin/hdfs dfs -cat /user/root/output/part-00000  
+24/10/31 08:56:05 INFO streaming.StreamJob: Output directory: /user/root/output
+root@hadoop-master:~# $HADOOP_HOME/bin/hdfs dfs -cat /user/root/output/part-00000
 and	1
 larger	1
 love	1

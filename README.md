@@ -142,6 +142,20 @@ hdfs dfs -rm -r /user/root/output
 ./docker-cmd.sh clear
 ```
 
+### UI
+
+1. Check IP address for host machine
+
+```sh
+ifconfig
+```
+
+2. Open the browser and enter the URL
+
+```sh
+http://host_IP:8088/
+```
+
 ### Frameworks Used
 
 - [Apache Hadoop](https://hadoop.apache.org/)
