@@ -155,47 +155,35 @@ $HADOOP_HOME/bin/hadoop jar /usr/local/hadoop/share/hadoop/tools/lib/hadoop-stre
     -files /root/TFIDF_mapper.py,/root/TFIDF_reducer.py \
     -input /user/root/input/wc_data1.txt \
     -input /user/root/input/wc_data2.txt \
-    -output /user/root/output_tf_idf \
+    -output /user/root/output \
     -mapper "python3 TFIDF_mapper.py" \
     -reducer "python3 TFIDF_reducer.py"
 ```
 
-11. Execute TD-IDF in Hadoop
-
-```sh
-$HADOOP_HOME/bin/hadoop jar /usr/local/hadoop/share/hadoop/tools/lib/hadoop-streaming-2.7.2.jar \
-    -files /root/TFIDF_mapper.py,/root/TFIDF_reducer.py \
-    -input /user/root/input/wc_data1.txt \
-    -input /user/root/input/wc_data2.txt \
-    -output /user/root/output_tf_idf \
-    -mapper "python3 TFIDF_mapper.py" \
-    -reducer "python3 TFIDF_reducer.py"
-```
-
-12. Execute Activity_Mining in Hadoop
+11. Execute Activity_Mining in Hadoop
 
 ```sh
 $HADOOP_HOME/bin/hadoop jar /usr/local/hadoop/share/hadoop/tools/lib/hadoop-streaming-2.7.2.jar \
   -files /root/Activity_Mining_mapper.py,/root/Activity_Mining_reducer.py \
   -input /user/root/input/wc_data1.txt \
-  -output /user/root/output_activity_mining \
+  -output /user/root/output \
   -mapper "python3 Activity_Mining_mapper.py" \
   -reducer "python3 Activity_Mining_reducer.py"
 ```
 
-13. Check the output results
+12. Check the output results
 
 ```sh
 $HADOOP_HOME/bin/hdfs dfs -cat /user/root/output/part-00000
 ```
 
-14. If you want to execute Step8 again, please use the command to delete the output log
+13. If you want to execute Step8 again, please use the command to delete the output log
 
 ```sh
 hdfs dfs -rm -r /user/root/output
 ```
 
-15. If you want to clear all container in Linux
+14. If you want to clear all container in Linux
 
 ```sh
 ./docker-cmd.sh clear
