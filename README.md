@@ -177,7 +177,7 @@ $HADOOP_HOME/bin/hadoop jar /usr/local/hadoop/share/hadoop/tools/lib/hadoop-stre
 $HADOOP_HOME/bin/hdfs dfs -cat /user/root/output/part-00000
 ```
 
-13. If you want to execute Step8 again, please use the command to delete the output log
+13. If you want to execute Step8 to Step12 again, please use the command to delete the output log
 
 ```sh
 hdfs dfs -rm -r /user/root/output
