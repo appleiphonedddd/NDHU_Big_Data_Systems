@@ -1,0 +1,199 @@
+root@hadoop-master:~# $HADOOP_HOME/bin/hadoop jar /usr/local/hadoop/share/hadoop/tools/lib/hadoop-streaming-2.7.2.jar   -files /root/Activity_Mining_mapper.py,/root/Activity_Mining_reducer.py   -input /user/root/input/wc_data1.txt   -output /user/root/output_activity_mining   -mapper "python3 Activity_Mining_mapper.py"   -reducer "python3 Activity_Mining_reducer.py"
+packageJobJar: [/tmp/hadoop-unjar8820336885377986188/] [] /tmp/streamjob8037559369459848384.jar tmpDir=null
+24/10/31 10:09:11 INFO client.RMProxy: Connecting to ResourceManager at hadoop-master/172.20.0.2:8032
+24/10/31 10:09:11 INFO client.RMProxy: Connecting to ResourceManager at hadoop-master/172.20.0.2:8032
+24/10/31 10:09:11 INFO mapred.FileInputFormat: Total input paths to process : 1
+24/10/31 10:09:11 INFO mapreduce.JobSubmitter: number of splits:2
+24/10/31 10:09:12 INFO mapreduce.JobSubmitter: Submitting tokens for job: job_1730364799437_0008
+24/10/31 10:09:12 INFO impl.YarnClientImpl: Submitted application application_1730364799437_0008
+24/10/31 10:09:12 INFO mapreduce.Job: The url to track the job: http://hadoop-master:8088/proxy/application_1730364799437_0008/
+24/10/31 10:09:12 INFO mapreduce.Job: Running job: job_1730364799437_0008
+24/10/31 10:09:17 INFO mapreduce.Job: Job job_1730364799437_0008 running in uber mode : false
+24/10/31 10:09:17 INFO mapreduce.Job:  map 0% reduce 0%
+24/10/31 10:09:22 INFO mapreduce.Job:  map 100% reduce 0%
+24/10/31 10:09:28 INFO mapreduce.Job:  map 100% reduce 100%
+24/10/31 10:09:28 INFO mapreduce.Job: Job job_1730364799437_0008 completed successfully
+24/10/31 10:09:28 INFO mapreduce.Job: Counters: 49
+	File System Counters
+		FILE: Number of bytes read=34216
+		FILE: Number of bytes written=430825
+		FILE: Number of read operations=0
+		FILE: Number of large read operations=0
+		FILE: Number of write operations=0
+		HDFS: Number of bytes read=287
+		HDFS: Number of bytes written=3186
+		HDFS: Number of read operations=9
+		HDFS: Number of large read operations=0
+		HDFS: Number of write operations=2
+	Job Counters 
+		Launched map tasks=2
+		Launched reduce tasks=1
+		Data-local map tasks=2
+		Total time spent by all maps in occupied slots (ms)=5634
+		Total time spent by all reduces in occupied slots (ms)=2352
+		Total time spent by all map tasks (ms)=5634
+		Total time spent by all reduce tasks (ms)=2352
+		Total vcore-milliseconds taken by all map tasks=5634
+		Total vcore-milliseconds taken by all reduce tasks=2352
+		Total megabyte-milliseconds taken by all map tasks=5769216
+		Total megabyte-milliseconds taken by all reduce tasks=2408448
+	Map-Reduce Framework
+		Map input records=1
+		Map output records=1013
+		Map output bytes=32184
+		Map output materialized bytes=34222
+		Input split bytes=212
+		Combine input records=0
+		Combine output records=0
+		Reduce input groups=950
+		Reduce shuffle bytes=34222
+		Reduce input records=1013
+		Reduce output records=126
+		Spilled Records=2026
+		Shuffled Maps =2
+		Failed Shuffles=0
+		Merged Map outputs=2
+		GC time elapsed (ms)=57
+		CPU time spent (ms)=1480
+		Physical memory (bytes) snapshot=865394688
+		Virtual memory (bytes) snapshot=2717921280
+		Total committed heap usage (bytes)=603979776
+	Shuffle Errors
+		BAD_ID=0
+		CONNECTION=0
+		IO_ERROR=0
+		WRONG_LENGTH=0
+		WRONG_MAP=0
+		WRONG_REDUCE=0
+	File Input Format Counters 
+		Bytes Read=75
+	File Output Format Counters 
+		Bytes Written=3186
+24/10/31 10:09:28 INFO streaming.StreamJob: Output directory: /user/root/output_activity_mining
+root@hadoop-master:~# $HADOOP_HOME/bin/hdfs dfs -cat /user/root/output_activity_mining/part-00000
+beer->germany	2
+beer->germany	2
+beer->in	2
+beer->in	2
+beer->in->germany	2
+beer->in->germany	2
+craft->beer	2
+craft->beer	2
+craft->beer->germany	2
+craft->beer->germany	2
+craft->beer->in	2
+craft->beer->in	2
+craft->beer->in->germany	2
+craft->beer->in->germany	2
+drink->beer	2
+drink->beer	2
+drink->beer->germany	2
+drink->beer->germany	2
+drink->beer->in	2
+drink->beer->in	2
+drink->beer->in->germany	2
+drink->beer->in->germany	2
+drink->craft->beer	2
+drink->craft->beer	2
+drink->craft->beer->germany	2
+drink->craft->beer->germany	2
+drink->craft->beer->in	2
+drink->craft->beer->in	2
+drink->craft->beer->in->germany	2
+drink->craft->beer->in->germany	2
+i->beer	2
+i->beer	2
+i->beer->germany	2
+i->beer->germany	2
+i->beer->in	2
+i->beer->in	2
+i->beer->in->germany	2
+i->beer->in->germany	2
+i->craft->beer	2
+i->craft->beer	2
+i->craft->beer->germany	2
+i->craft->beer->germany	2
+i->craft->beer->in	2
+i->craft->beer->in	2
+i->craft->beer->in->germany	2
+i->craft->beer->in->germany	2
+i->drink->beer	2
+i->drink->beer	2
+i->drink->beer->germany	2
+i->drink->beer->germany	2
+i->drink->beer->in	2
+i->drink->beer->in	2
+i->drink->beer->in->germany	2
+i->drink->beer->in->germany	2
+i->drink->craft->beer	2
+i->drink->craft->beer	2
+i->drink->craft->beer->germany	2
+i->drink->craft->beer->germany	2
+i->drink->craft->beer->in	2
+i->drink->craft->beer->in	2
+i->drink->craft->beer->in->germany	2
+i->drink->craft->beer->in->germany	2
+i->love->beer	2
+i->love->beer	2
+i->love->beer->germany	2
+i->love->beer->germany	2
+i->love->beer->in	2
+i->love->beer->in	2
+i->love->beer->in->germany	2
+i->love->beer->in->germany	2
+i->love->craft->beer	2
+i->love->craft->beer	2
+i->love->craft->beer->germany	2
+i->love->craft->beer->germany	2
+i->love->craft->beer->in	2
+i->love->craft->beer->in	2
+i->love->craft->beer->in->germany	2
+i->love->craft->beer->in->germany	2
+i->love->drink->beer	2
+i->love->drink->beer	2
+i->love->drink->beer->germany	2
+i->love->drink->beer->germany	2
+i->love->drink->beer->in	2
+i->love->drink->beer->in	2
+i->love->drink->beer->in->germany	2
+i->love->drink->beer->in->germany	2
+i->love->drink->craft->beer	2
+i->love->drink->craft->beer	2
+i->love->drink->craft->beer->germany	2
+i->love->drink->craft->beer->germany	2
+i->love->drink->craft->beer->in	2
+i->love->drink->craft->beer->in	2
+i->love->drink->craft->beer->in->germany	2
+i->love->drink->craft->beer->in->germany	2
+love->beer	2
+love->beer	2
+love->beer->germany	2
+love->beer->germany	2
+love->beer->in	2
+love->beer->in	2
+love->beer->in->germany	2
+love->beer->in->germany	2
+love->craft->beer	2
+love->craft->beer	2
+love->craft->beer->germany	2
+love->craft->beer->germany	2
+love->craft->beer->in	2
+love->craft->beer->in	2
+love->craft->beer->in->germany	2
+love->craft->beer->in->germany	2
+love->drink->beer	2
+love->drink->beer	2
+love->drink->beer->germany	2
+love->drink->beer->germany	2
+love->drink->beer->in	2
+love->drink->beer->in	2
+love->drink->beer->in->germany	2
+love->drink->beer->in->germany	2
+love->drink->craft->beer	2
+love->drink->craft->beer	2
+love->drink->craft->beer->germany	2
+love->drink->craft->beer->germany	2
+love->drink->craft->beer->in	2
+love->drink->craft->beer->in	2
+love->drink->craft->beer->in->germany	2
+love->drink->craft->beer->in->germany	2
