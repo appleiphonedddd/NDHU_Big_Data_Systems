@@ -149,7 +149,7 @@ hdfs dfs -ls /user/root/input
 ```sh
 $HADOOP_HOME/bin/hadoop jar /usr/local/hadoop/share/hadoop/tools/lib/hadoop-streaming-2.7.2.jar \
     -files /root/Mapper.py,/root/Reducer.py \
-    -input /user/root/input/word_count_data.txt \
+    -input /user/root/input/wc_data1.txt \
     -output /user/root/output \
     -mapper "python Mapper.py" \
     -reducer "python Reducer.py" 
