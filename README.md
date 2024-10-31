@@ -1,20 +1,7 @@
 # NDHU_Big_Data_Systems_Fall
 
-`NDHU_Big_Data_Systems_Fall` project belongs to the Big Data Systems at National Dong Hwa University. The purpose of this project is to know about 
+`NDHU_Big_Data_Systems_Fall` project belongs to the Big Data Systems at National Dong Hwa University. The purpose of this project is to set up and operate a Hadoop cluster to process large datasets and implement core big data algorithms and provides instructions for setting up the cluster, running the project, and understanding its key components
 
-Big data concepts, operational architecture, and related system tools. The system introduced is mainly open source software, including General purpose big data platforms): Hadoop/MatReduce, Apache Spark, HPCC, ...
-
- . Big data storage architecture and systems: distributed storage and file system, Google GFS, Apache HDFS, GlusterFS, ...
-
- . Big data systems for structured/semi-structured data: NoSQL/NewSQL/Distributed SQL, Apache HBase, Cassandra, Hive, MongoDB, ...
-
- .Systems for big graph processing: BSP, Pregel, Giraph, Spark GraphX, Neo4j, Titan, ...
-
- . Systems for streaming big data: Spark Streaming, Structured Streaming, Apache Storm, Samza, Flink, SAMOA, ...
-
- . Big data pipelineing, ETL, workflow and orchestration systems: Apache Airflow, Apache Kafka, Apache NiFi, Dagster, Prefect, ...
-
- . Big data analytics and advanced topics
 
 ## Contents
 
