@@ -32,6 +32,7 @@ Big data concepts, operational architecture, and related system tools. The syste
 
 1. Python 3.9
 2. Ubuntu 24.04
+3. Hodoop 2.7.2
 
 ###### **Installation**
 
@@ -41,12 +42,23 @@ Big data concepts, operational architecture, and related system tools. The syste
 sudo apt-get update
 ```
 
-2. Install Conda
+2. Install Conda and Docker
 
 ```sh
-
-chmod 777 Install_miniconda.sh
 ./Install_miniconda.sh
+./Install_docker.sh
+```
+
+3. Building environment in conda
+
+```sh
+conda create --name BigData python=3.9
+```
+
+4. Active environment
+
+```sh
+conda activate BigData
 ```
 
 ### Directory Structure
@@ -54,26 +66,105 @@ chmod 777 Install_miniconda.sh
 ```
 filetree 
 ├── Assignment1
-│   ├── testcase
-│   │   └── wc_data.txt
-│   └── word_count.ipynb
+│   ├── Log
+│   │   └── Map_reduce_log.txt
+│   ├── Mapper.py
+│   ├── Mapper_search.py
+│   ├── Mapper_tfidf.py
+│   ├── Reducer.py
+│   ├── Reducer_search.py
+│   ├── Reducer_tfidf.py
+│   ├── Result
+│   │   └── Mapper and reduce.png
+│   ├── Sorting.py
+│   └── Testcase
+│       └── wc_data1.txt
+├── build-image.sh
+├── building_Hadoop.sh
+├── config
+│   ├── core-site.xml
+│   ├── hadoop-env.sh
+│   ├── hdfs-site.xml
+│   ├── mapred-site.xml
+│   ├── run-wordcount.sh
+│   ├── slaves
+│   ├── ssh_config
+│   ├── start-hadoop.sh
+│   └── yarn-site.xml
+├── Dockerfile
+├── Install_docker.sh
 ├── Install_miniconda.sh
 ├── LICENSE
-└── README.md
+├── README.md
+├── resize-cluster.sh
+└── start-container.sh
 ```
 
 ### Deployment
 
-1. Building environment in conda
+1. Pull docker image
 
 ```sh
-conda create --name BigData python=3.9
+./building_Hadoop.sh
 ```
 
-2. Active environment
+2. Start hadoop cluster
 
 ```sh
-conda activate BigData
+./start-hadoop.sh
+```
+
+3. Open new windows and show docker container ID
+
+```sh
+docker ps -a
+```
+
+4. Copy these files `.py` and Testcase dictionary `.txt` to the master container of Hadoop
+
+```sh
+docker cp /path/to/files Container_ID:/root
+```
+
+5. Switch to original terminal and create a directory in master container
+
+```sh
+hdfs dfs -mkdir -p /user/root/input 
+```
+
+6. Upload the file to HDFS 
+
+```sh
+hdfs dfs -put /root/wc_data1.txt /user/root/input
+```
+
+7. Confirm whether the file was successfully uploaded
+
+```sh
+hdfs dfs -ls /user/root/input
+```
+
+8. Execute mapper and reduce in Hadoop
+
+```sh
+$HADOOP_HOME/bin/hadoop jar /usr/local/hadoop/share/hadoop/tools/lib/hadoop-streaming-2.7.2.jar \
+    -files /root/Mapper.py,/root/Reducer.py \
+    -input /user/root/input/word_count_data.txt \
+    -output /user/root/output \
+    -mapper "python Mapper.py" \
+    -reducer "python Reducer.py" 
+```
+
+9. Check the output results
+
+```sh
+$HADOOP_HOME/bin/hdfs dfs -cat /user/root/output/part-00000 
+```
+
+10. If you want to execute Step8 again, please use the command to delete the output log
+
+```sh
+hdfs dfs -rm -r /user/root/output
 ```
 
 ### Frameworks Used
