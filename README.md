@@ -43,14 +43,9 @@ filetree
 │   ├── Log
 │   │   └── Map_reduce_log.txt
 │   ├── Mapper.py
-│   ├── Mapper_search.py
-│   ├── Mapper_tfidf.py
 │   ├── Reducer.py
-│   ├── Reducer_search.py
-│   ├── Reducer_tfidf.py
 │   ├── Result
 │   │   └── Mapper and reduce.png
-│   ├── Sorting.py
 │   └── Testcase
 │       ├── wc_data1.txt
 │       └── wc_data2.txt
@@ -66,6 +61,7 @@ filetree
 │   ├── ssh_config
 │   ├── start-hadoop.sh
 │   └── yarn-site.xml
+├── docker-cmd.sh
 ├── Dockerfile
 ├── Install_docker.sh
 ├── LICENSE
