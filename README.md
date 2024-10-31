@@ -42,23 +42,10 @@ Big data concepts, operational architecture, and related system tools. The syste
 sudo apt-get update
 ```
 
-2. Install Conda and Docker
+2. Install docker engine
 
 ```sh
-./Install_miniconda.sh
 ./Install_docker.sh
-```
-
-3. Building environment in conda
-
-```sh
-conda create --name BigData python=3.9
-```
-
-4. Active environment
-
-```sh
-conda activate BigData
 ```
 
 ### Directory Structure
@@ -152,13 +139,13 @@ $HADOOP_HOME/bin/hadoop jar /usr/local/hadoop/share/hadoop/tools/lib/hadoop-stre
     -input /user/root/input/wc_data1.txt \
     -output /user/root/output \
     -mapper "python Mapper.py" \
-    -reducer "python Reducer.py" 
+    -reducer "python Reducer.py"
 ```
 
 9. Check the output results
 
 ```sh
-$HADOOP_HOME/bin/hdfs dfs -cat /user/root/output/part-00000 
+$HADOOP_HOME/bin/hdfs dfs -cat /user/root/output/part-00000
 ```
 
 10. If you want to execute Step8 again, please use the command to delete the output log
