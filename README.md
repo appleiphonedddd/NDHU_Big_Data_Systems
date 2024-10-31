@@ -40,15 +40,41 @@ sudo apt-get update
 ```
 filetree 
 ├── Assignment1
+│   ├── Activity_Mining_mapper.py
+│   ├── Activity_Mining_reducer.py
 │   ├── Log
-│   │   └── Map_reduce_log.txt
+│   │   ├── Activity_Mining.txt
+│   │   ├── Map_reduce.txt
+│   │   ├── Search.txt
+│   │   ├── Sorting.txt
+│   │   └── TF_IDF.txt
 │   ├── Mapper.py
 │   ├── Reducer.py
 │   ├── Result
-│   │   └── Mapper and reduce.png
-│   └── Testcase
-│       ├── wc_data1.txt
-│       └── wc_data2.txt
+│   │   ├── Activity_Mining
+│   │   │   ├── Terminal.png
+│   │   │   └── Website.png
+│   │   ├── Mapper and Reducer
+│   │   │   ├── Terminal.png
+│   │   │   └── Website.png
+│   │   ├── Search
+│   │   │   ├── Terminal.png
+│   │   │   └── Website.png
+│   │   ├── Sorting
+│   │   │   ├── Terminal.png
+│   │   │   └── Website.png
+│   │   └── TF_IDF
+│   │       ├── Terminal.png
+│   │       └── Website.png
+│   ├── Search_mapper.py
+│   ├── Search_reducer.py
+│   ├── Sort_mapper.py
+│   ├── Sort_reducer.py
+│   ├── Testcase
+│   │   ├── wc_data1.txt
+│   │   └── wc_data2.txt
+│   ├── TFIDF_mapper.py
+│   └── TFIDF_reducer.py
 ├── build-image.sh
 ├── building_Hadoop.sh
 ├── config
