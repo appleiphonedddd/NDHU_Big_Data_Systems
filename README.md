@@ -114,13 +114,13 @@ filetree
 docker ps -a
 ```
 
-4. Copy these files `.py` and Testcase dictionary `.txt` to the master container of Hadoop
+4. Copy the .py files and the Testcase dictionary.txt file to the master container in Hadoop
 
 ```sh
 docker cp /path/to/files Container_ID:/root
 ```
 
-5. Switch to original terminal and create a directory in master container
+5. Switch to the original terminal on the Hadoop master, and create an HDFS directory in the master container
 
 ```sh
 hdfs dfs -mkdir -p /user/root/input 
@@ -130,6 +130,7 @@ hdfs dfs -mkdir -p /user/root/input
 
 ```sh
 hdfs dfs -put /root/wc_data1.txt /user/root/input
+hdfs dfs -put /root/wc_data2.txt /user/root/input
 ```
 
 7. Confirm whether the file was successfully uploaded
