@@ -17,9 +17,8 @@
 
 ###### Requirements
 
-1. Python 3.9
-2. Ubuntu 24.04
-3. Hodoop 2.7.2
+1. Ubuntu 24.04
+2. Hodoop 2.7.2
 
 ###### **Installation**
 
@@ -32,7 +31,7 @@ sudo apt-get update
 2. Install docker engine
 
 ```sh
-./Install_docker.sh
+./install-docker.sh
 ```
 
 ### Directory Structure
@@ -76,7 +75,7 @@ filetree
 │   ├── TFIDF_mapper.py
 │   └── TFIDF_reducer.py
 ├── build-image.sh
-├── building_Hadoop.sh
+├── building-hadoop.sh
 ├── config
 │   ├── core-site.xml
 │   ├── hadoop-env.sh
@@ -89,7 +88,7 @@ filetree
 │   └── yarn-site.xml
 ├── docker-cmd.sh
 ├── Dockerfile
-├── Install_docker.sh
+├── install-docker.sh
 ├── LICENSE
 ├── README.md
 └── start-container.sh
@@ -100,7 +99,7 @@ filetree
 1. Pull docker image
 
 ```sh
-./building_Hadoop.sh
+./building-hadoop.sh
 ```
 
 2. Start hadoop cluster
@@ -150,7 +149,19 @@ $HADOOP_HOME/bin/hadoop jar /usr/local/hadoop/share/hadoop/tools/lib/hadoop-stre
     -reducer "python Reducer.py"
 ```
 
-9. Execute Sorting in Hadoop
+9. Check the output results
+
+```sh
+$HADOOP_HOME/bin/hdfs dfs -cat /user/root/output/part-00000
+```
+
+10. If you want to execute Step8,Step11,Step12,Step13,Step14 again, please use the command to delete the output log
+
+```sh
+hdfs dfs -rm -r /user/root/output
+```
+
+11. Execute Sorting in Hadoop
 
 ```sh
 $HADOOP_HOME/bin/hadoop jar /usr/local/hadoop/share/hadoop/tools/lib/hadoop-streaming-2.7.2.jar \
@@ -161,7 +172,7 @@ $HADOOP_HOME/bin/hadoop jar /usr/local/hadoop/share/hadoop/tools/lib/hadoop-stre
     -reducer "python Sort_reducer.py"
 ```
 
-10. Execute Search in Hadoop
+12. Execute Search in Hadoop
 
 ```sh
 $HADOOP_HOME/bin/hadoop jar /usr/local/hadoop/share/hadoop/tools/lib/hadoop-streaming-2.7.2.jar \
@@ -174,7 +185,7 @@ $HADOOP_HOME/bin/hadoop jar /usr/local/hadoop/share/hadoop/tools/lib/hadoop-stre
     -cmdenv SEARCH_WORD="beer"
 ```
 
-10. Execute TD-IDF in Hadoop
+13. Execute TD-IDF in Hadoop
 
 ```sh
 $HADOOP_HOME/bin/hadoop jar /usr/local/hadoop/share/hadoop/tools/lib/hadoop-streaming-2.7.2.jar \
@@ -186,7 +197,7 @@ $HADOOP_HOME/bin/hadoop jar /usr/local/hadoop/share/hadoop/tools/lib/hadoop-stre
     -reducer "python3 TFIDF_reducer.py"
 ```
 
-11. Execute Activity_Mining in Hadoop
+14. Execute Activity_Mining in Hadoop
 
 ```sh
 $HADOOP_HOME/bin/hadoop jar /usr/local/hadoop/share/hadoop/tools/lib/hadoop-streaming-2.7.2.jar \
@@ -197,17 +208,9 @@ $HADOOP_HOME/bin/hadoop jar /usr/local/hadoop/share/hadoop/tools/lib/hadoop-stre
   -reducer "python3 Activity_Mining_reducer.py"
 ```
 
-12. Check the output results
 
-```sh
-$HADOOP_HOME/bin/hdfs dfs -cat /user/root/output/part-00000
-```
 
-13. If you want to execute Step8 to Step12 again, please use the command to delete the output log
 
-```sh
-hdfs dfs -rm -r /user/root/output
-```
 
 14. If you want to clear all container in Linux
 
