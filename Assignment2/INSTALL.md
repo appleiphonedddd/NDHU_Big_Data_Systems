@@ -128,8 +128,6 @@ docker cp /path/to/files docker-spark-cluster_spark-master_1:/opt/spark/data/
 
 ```sh
 docker exec -it docker-spark-cluster_spark-master_1 bash
-cd data
-export PATH=/opt/spark/bin:$PATH
 ```
 
 6. Setting environment path in Spark master container
