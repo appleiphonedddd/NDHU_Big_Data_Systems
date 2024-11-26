@@ -165,9 +165,10 @@ cat /opt/spark/data/output_course_stats/part-00000
 cat /opt/spark/data/output_failure_rates/part-00000
 ```
 
-9. Execute Inverted Index in Spark and check the output results
+9. Install a Python library that supports Chinese test cases, execute an Inverted Index in Spark, and check the output results
 
 ```sh
+pip3 install jieba
 spark-submit /opt/spark/data/inverted_index.py
 cat /opt/spark/data/invert_data/part-00000
 ```
