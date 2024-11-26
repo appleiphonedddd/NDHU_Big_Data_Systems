@@ -1,6 +1,6 @@
 # NDHU_Big_Data_Systems_Fall
 
-`NDHU_Big_Data_Systems_Fall` project belongs to the Big Data Systems at National Dong Hwa University. The purpose of this project is to set up and operate a Hadoop cluster to process large datasets and implement core big data algorithms and provides instructions for setting up the cluster, running the project, and understanding its key components
+`NDHU_Big_Data_Systems_Fall` project belongs to the Big Data Systems at National Dong Hwa University. The purpose of this project is to set up and operate a Big Data cluster to process large datasets and implement core big data algorithms and provides instructions for setting up the cluster
 
 
 ## Contents
