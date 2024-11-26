@@ -160,22 +160,23 @@ rm -r /opt/spark/data/sorted_frequent_data
 
 ```sh
 spark-submit /opt/spark/data/compute_gpa.py
+cat /opt/spark/data/output_student_gpas/part-00000
+cat /opt/spark/data/output_course_stats/part-00000
+cat /opt/spark/data/output_failure_rates/part-00000
 ```
 
 9. Execute Inverted Index in Spark and check the output results
 
 ```sh
 spark-submit /opt/spark/data/inverted_index.py
-cat /opt/spark/data/output_student_gpas/part-00000
-cat /opt/spark/data/output_course_stats/part-00000
-cat /opt/spark/data/output_failure_rates/part-00000
+cat /opt/spark/data/invert_data/part-00000
 ```
 
 10. Execute Count Frequent in Spark and check the output results
 
 ```sh
 spark-submit /opt/spark/data/count_frequent.py
-cat /opt/spark/data/invert_data/part-00000
+cat /opt/spark/data/sorted_frequent_data/part-00000
 ```
 
 11. If you want to clear all container in Linux
