@@ -1,0 +1,690 @@
+root@355d0e55790e:/opt/spark/data# spark-submit pagerank.py 
+WARNING: An illegal reflective access operation has occurred
+WARNING: Illegal reflective access by org.apache.spark.unsafe.Platform (file:/opt/spark/jars/spark-unsafe_2.12-3.0.2.jar) to constructor java.nio.DirectByteBuffer(long,int)
+WARNING: Please consider reporting this to the maintainers of org.apache.spark.unsafe.Platform
+WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
+WARNING: All illegal access operations will be denied in a future release
+24/11/26 01:21:48 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+Using Spark's default log4j profile: org/apache/spark/log4j-defaults.properties
+24/11/26 01:21:49 INFO SparkContext: Running Spark version 3.0.2
+24/11/26 01:21:49 INFO ResourceUtils: ==============================================================
+24/11/26 01:21:49 INFO ResourceUtils: Resources for spark.driver:
+
+24/11/26 01:21:49 INFO ResourceUtils: ==============================================================
+24/11/26 01:21:49 INFO SparkContext: Submitted application: PageRank
+24/11/26 01:21:49 INFO SecurityManager: Changing view acls to: root
+24/11/26 01:21:49 INFO SecurityManager: Changing modify acls to: root
+24/11/26 01:21:49 INFO SecurityManager: Changing view acls groups to: 
+24/11/26 01:21:49 INFO SecurityManager: Changing modify acls groups to: 
+24/11/26 01:21:49 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users  with view permissions: Set(root); groups with view permissions: Set(); users  with modify permissions: Set(root); groups with modify permissions: Set()
+24/11/26 01:21:49 INFO Utils: Successfully started service 'sparkDriver' on port 33849.
+24/11/26 01:21:49 INFO SparkEnv: Registering MapOutputTracker
+24/11/26 01:21:49 INFO SparkEnv: Registering BlockManagerMaster
+24/11/26 01:21:49 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+24/11/26 01:21:49 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
+24/11/26 01:21:49 INFO SparkEnv: Registering BlockManagerMasterHeartbeat
+24/11/26 01:21:50 INFO DiskBlockManager: Created local directory at /tmp/blockmgr-84a43fde-bb29-4f3d-9201-b573340021a2
+24/11/26 01:21:50 INFO MemoryStore: MemoryStore started with capacity 434.4 MiB
+24/11/26 01:21:50 INFO SparkEnv: Registering OutputCommitCoordinator
+24/11/26 01:21:50 INFO Utils: Successfully started service 'SparkUI' on port 4040.
+24/11/26 01:21:50 INFO SparkUI: Bound SparkUI to spark-master, and started at http://355d0e55790e:4040
+24/11/26 01:21:50 INFO Executor: Starting executor ID driver on host 355d0e55790e
+24/11/26 01:21:50 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 39237.
+24/11/26 01:21:50 INFO NettyBlockTransferService: Server created on 355d0e55790e:39237
+24/11/26 01:21:50 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+24/11/26 01:21:50 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, 355d0e55790e, 39237, None)
+24/11/26 01:21:50 INFO BlockManagerMasterEndpoint: Registering block manager 355d0e55790e:39237 with 434.4 MiB RAM, BlockManagerId(driver, 355d0e55790e, 39237, None)
+24/11/26 01:21:50 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, 355d0e55790e, 39237, None)
+24/11/26 01:21:50 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, 355d0e55790e, 39237, None)
+24/11/26 01:21:51 INFO MemoryStore: Block broadcast_0 stored as values in memory (estimated size 175.9 KiB, free 434.2 MiB)
+24/11/26 01:21:51 INFO MemoryStore: Block broadcast_0_piece0 stored as bytes in memory (estimated size 27.1 KiB, free 434.2 MiB)
+24/11/26 01:21:51 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 355d0e55790e:39237 (size: 27.1 KiB, free: 434.4 MiB)
+24/11/26 01:21:51 INFO SparkContext: Created broadcast 0 from textFile at <unknown>:0
+Traceback (most recent call last):
+  File "/opt/spark/data/pagerank.py", line 12, in <module>
+    links = lines.map(lambda line: line.split()).groupByKey().mapValues(list)
+  File "/opt/spark/python/lib/pyspark.zip/pyspark/rdd.py", line 2034, in groupByKey
+  File "/opt/spark/python/lib/pyspark.zip/pyspark/rdd.py", line 1836, in partitionBy
+  File "/opt/spark/python/lib/pyspark.zip/pyspark/rdd.py", line 2348, in _defaultReducePartitions
+  File "/opt/spark/python/lib/pyspark.zip/pyspark/rdd.py", line 2614, in getNumPartitions
+  File "/opt/spark/python/lib/py4j-0.10.9-src.zip/py4j/java_gateway.py", line 1305, in __call__
+  File "/opt/spark/python/lib/py4j-0.10.9-src.zip/py4j/protocol.py", line 328, in get_return_value
+py4j.protocol.Py4JJavaError: An error occurred while calling o20.partitions.
+: org.apache.hadoop.mapred.InvalidInputException: Input path does not exist: file:/opt/spark-data/PR_data.txt
+	at org.apache.hadoop.mapred.FileInputFormat.singleThreadedListStatus(FileInputFormat.java:297)
+	at org.apache.hadoop.mapred.FileInputFormat.listStatus(FileInputFormat.java:239)
+	at org.apache.hadoop.mapred.FileInputFormat.getSplits(FileInputFormat.java:325)
+	at org.apache.spark.rdd.HadoopRDD.getPartitions(HadoopRDD.scala:205)
+	at org.apache.spark.rdd.RDD.$anonfun$partitions$2(RDD.scala:276)
+	at scala.Option.getOrElse(Option.scala:189)
+	at org.apache.spark.rdd.RDD.partitions(RDD.scala:272)
+	at org.apache.spark.rdd.MapPartitionsRDD.getPartitions(MapPartitionsRDD.scala:49)
+	at org.apache.spark.rdd.RDD.$anonfun$partitions$2(RDD.scala:276)
+	at scala.Option.getOrElse(Option.scala:189)
+	at org.apache.spark.rdd.RDD.partitions(RDD.scala:272)
+	at org.apache.spark.api.java.JavaRDDLike.partitions(JavaRDDLike.scala:61)
+	at org.apache.spark.api.java.JavaRDDLike.partitions$(JavaRDDLike.scala:61)
+	at org.apache.spark.api.java.AbstractJavaRDDLike.partitions(JavaRDDLike.scala:45)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.base/java.lang.reflect.Method.invoke(Unknown Source)
+	at py4j.reflection.MethodInvoker.invoke(MethodInvoker.java:244)
+	at py4j.reflection.ReflectionEngine.invoke(ReflectionEngine.java:357)
+	at py4j.Gateway.invoke(Gateway.java:282)
+	at py4j.commands.AbstractCommand.invokeMethod(AbstractCommand.java:132)
+	at py4j.commands.CallCommand.execute(CallCommand.java:79)
+	at py4j.GatewayConnection.run(GatewayConnection.java:238)
+	at java.base/java.lang.Thread.run(Unknown Source)
+
+24/11/26 01:21:51 INFO SparkContext: Invoking stop() from shutdown hook
+24/11/26 01:21:51 INFO SparkUI: Stopped Spark web UI at http://355d0e55790e:4040
+24/11/26 01:21:51 INFO MapOutputTrackerMasterEndpoint: MapOutputTrackerMasterEndpoint stopped!
+24/11/26 01:21:51 INFO MemoryStore: MemoryStore cleared
+24/11/26 01:21:51 INFO BlockManager: BlockManager stopped
+24/11/26 01:21:51 INFO BlockManagerMaster: BlockManagerMaster stopped
+24/11/26 01:21:51 INFO OutputCommitCoordinator$OutputCommitCoordinatorEndpoint: OutputCommitCoordinator stopped!
+24/11/26 01:21:51 INFO SparkContext: Successfully stopped SparkContext
+24/11/26 01:21:51 INFO ShutdownHookManager: Shutdown hook called
+24/11/26 01:21:51 INFO ShutdownHookManager: Deleting directory /tmp/spark-2b57901b-3445-44c8-a1df-e1c2980b407e
+24/11/26 01:21:51 INFO ShutdownHookManager: Deleting directory /tmp/spark-880e2d7b-98c9-4f59-a79b-28e2fa492de0
+24/11/26 01:21:51 INFO ShutdownHookManager: Deleting directory /tmp/spark-2b57901b-3445-44c8-a1df-e1c2980b407e/pyspark-d19099b6-5534-43d4-a552-150a131a5cdf
+root@355d0e55790e:/opt/spark/data# cat /opt/spark-data/output_ranks.txt
+cat: /opt/spark-data/output_ranks.txt: No such file or directory
+root@355d0e55790e:/opt/spark/data# ls
+PR_data.txt  graphx  mllib  pagerank.py  streaming
+root@355d0e55790e:/opt/spark/data# cat /opt/spark/data/^C
+root@355d0e55790e:/opt/spark/data# ls
+PR_data.txt  graphx  mllib  pagerank.py  streaming
+root@355d0e55790e:/opt/spark/data# ls
+PR_data.txt  graphx  mllib  pagerank.py  streaming
+root@355d0e55790e:/opt/spark/data# rm -rf pagerank.py 
+root@355d0e55790e:/opt/spark/data# ls
+PR_data.txt  graphx  mllib  pagerank.py  streaming
+root@355d0e55790e:/opt/spark/data# spark-submit pagerank.py 
+WARNING: An illegal reflective access operation has occurred
+WARNING: Illegal reflective access by org.apache.spark.unsafe.Platform (file:/opt/spark/jars/spark-unsafe_2.12-3.0.2.jar) to constructor java.nio.DirectByteBuffer(long,int)
+WARNING: Please consider reporting this to the maintainers of org.apache.spark.unsafe.Platform
+WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
+WARNING: All illegal access operations will be denied in a future release
+24/11/26 01:25:35 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+Using Spark's default log4j profile: org/apache/spark/log4j-defaults.properties
+24/11/26 01:25:35 INFO SparkContext: Running Spark version 3.0.2
+24/11/26 01:25:35 INFO ResourceUtils: ==============================================================
+24/11/26 01:25:35 INFO ResourceUtils: Resources for spark.driver:
+
+24/11/26 01:25:35 INFO ResourceUtils: ==============================================================
+24/11/26 01:25:35 INFO SparkContext: Submitted application: PageRank
+24/11/26 01:25:35 INFO SecurityManager: Changing view acls to: root
+24/11/26 01:25:35 INFO SecurityManager: Changing modify acls to: root
+24/11/26 01:25:35 INFO SecurityManager: Changing view acls groups to: 
+24/11/26 01:25:35 INFO SecurityManager: Changing modify acls groups to: 
+24/11/26 01:25:35 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users  with view permissions: Set(root); groups with view permissions: Set(); users  with modify permissions: Set(root); groups with modify permissions: Set()
+24/11/26 01:25:36 INFO Utils: Successfully started service 'sparkDriver' on port 40695.
+24/11/26 01:25:36 INFO SparkEnv: Registering MapOutputTracker
+24/11/26 01:25:36 INFO SparkEnv: Registering BlockManagerMaster
+24/11/26 01:25:36 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+24/11/26 01:25:36 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
+24/11/26 01:25:36 INFO SparkEnv: Registering BlockManagerMasterHeartbeat
+24/11/26 01:25:36 INFO DiskBlockManager: Created local directory at /tmp/blockmgr-973a749f-7d74-4202-bffa-f63bf55cf71e
+24/11/26 01:25:36 INFO MemoryStore: MemoryStore started with capacity 434.4 MiB
+24/11/26 01:25:36 INFO SparkEnv: Registering OutputCommitCoordinator
+24/11/26 01:25:36 INFO Utils: Successfully started service 'SparkUI' on port 4040.
+24/11/26 01:25:36 INFO SparkUI: Bound SparkUI to spark-master, and started at http://355d0e55790e:4040
+24/11/26 01:25:36 INFO Executor: Starting executor ID driver on host 355d0e55790e
+24/11/26 01:25:36 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 36867.
+24/11/26 01:25:36 INFO NettyBlockTransferService: Server created on 355d0e55790e:36867
+24/11/26 01:25:36 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+24/11/26 01:25:36 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, 355d0e55790e, 36867, None)
+24/11/26 01:25:36 INFO BlockManagerMasterEndpoint: Registering block manager 355d0e55790e:36867 with 434.4 MiB RAM, BlockManagerId(driver, 355d0e55790e, 36867, None)
+24/11/26 01:25:36 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, 355d0e55790e, 36867, None)
+24/11/26 01:25:36 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, 355d0e55790e, 36867, None)
+24/11/26 01:25:37 INFO MemoryStore: Block broadcast_0 stored as values in memory (estimated size 175.9 KiB, free 434.2 MiB)
+24/11/26 01:25:37 INFO MemoryStore: Block broadcast_0_piece0 stored as bytes in memory (estimated size 27.1 KiB, free 434.2 MiB)
+24/11/26 01:25:37 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 355d0e55790e:36867 (size: 27.1 KiB, free: 434.4 MiB)
+24/11/26 01:25:37 INFO SparkContext: Created broadcast 0 from textFile at <unknown>:0
+Traceback (most recent call last):
+  File "/opt/spark/data/pagerank.py", line 12, in <module>
+    links = lines.map(lambda line: line.split()).groupByKey().mapValues(list)
+  File "/opt/spark/python/lib/pyspark.zip/pyspark/rdd.py", line 2034, in groupByKey
+  File "/opt/spark/python/lib/pyspark.zip/pyspark/rdd.py", line 1836, in partitionBy
+  File "/opt/spark/python/lib/pyspark.zip/pyspark/rdd.py", line 2348, in _defaultReducePartitions
+  File "/opt/spark/python/lib/pyspark.zip/pyspark/rdd.py", line 2614, in getNumPartitions
+  File "/opt/spark/python/lib/py4j-0.10.9-src.zip/py4j/java_gateway.py", line 1305, in __call__
+  File "/opt/spark/python/lib/py4j-0.10.9-src.zip/py4j/protocol.py", line 328, in get_return_value
+py4j.protocol.Py4JJavaError: An error occurred while calling o20.partitions.
+: org.apache.hadoop.mapred.InvalidInputException: Input path does not exist: file:/opt/spark-data/PR_data.txt
+	at org.apache.hadoop.mapred.FileInputFormat.singleThreadedListStatus(FileInputFormat.java:297)
+	at org.apache.hadoop.mapred.FileInputFormat.listStatus(FileInputFormat.java:239)
+	at org.apache.hadoop.mapred.FileInputFormat.getSplits(FileInputFormat.java:325)
+	at org.apache.spark.rdd.HadoopRDD.getPartitions(HadoopRDD.scala:205)
+	at org.apache.spark.rdd.RDD.$anonfun$partitions$2(RDD.scala:276)
+	at scala.Option.getOrElse(Option.scala:189)
+	at org.apache.spark.rdd.RDD.partitions(RDD.scala:272)
+	at org.apache.spark.rdd.MapPartitionsRDD.getPartitions(MapPartitionsRDD.scala:49)
+	at org.apache.spark.rdd.RDD.$anonfun$partitions$2(RDD.scala:276)
+	at scala.Option.getOrElse(Option.scala:189)
+	at org.apache.spark.rdd.RDD.partitions(RDD.scala:272)
+	at org.apache.spark.api.java.JavaRDDLike.partitions(JavaRDDLike.scala:61)
+	at org.apache.spark.api.java.JavaRDDLike.partitions$(JavaRDDLike.scala:61)
+	at org.apache.spark.api.java.AbstractJavaRDDLike.partitions(JavaRDDLike.scala:45)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.base/java.lang.reflect.Method.invoke(Unknown Source)
+	at py4j.reflection.MethodInvoker.invoke(MethodInvoker.java:244)
+	at py4j.reflection.ReflectionEngine.invoke(ReflectionEngine.java:357)
+	at py4j.Gateway.invoke(Gateway.java:282)
+	at py4j.commands.AbstractCommand.invokeMethod(AbstractCommand.java:132)
+	at py4j.commands.CallCommand.execute(CallCommand.java:79)
+	at py4j.GatewayConnection.run(GatewayConnection.java:238)
+	at java.base/java.lang.Thread.run(Unknown Source)
+
+24/11/26 01:25:37 INFO SparkContext: Invoking stop() from shutdown hook
+24/11/26 01:25:37 INFO SparkUI: Stopped Spark web UI at http://355d0e55790e:4040
+24/11/26 01:25:37 INFO MapOutputTrackerMasterEndpoint: MapOutputTrackerMasterEndpoint stopped!
+24/11/26 01:25:37 INFO MemoryStore: MemoryStore cleared
+24/11/26 01:25:37 INFO BlockManager: BlockManager stopped
+24/11/26 01:25:37 INFO BlockManagerMaster: BlockManagerMaster stopped
+24/11/26 01:25:37 INFO OutputCommitCoordinator$OutputCommitCoordinatorEndpoint: OutputCommitCoordinator stopped!
+24/11/26 01:25:37 INFO SparkContext: Successfully stopped SparkContext
+24/11/26 01:25:37 INFO ShutdownHookManager: Shutdown hook called
+24/11/26 01:25:37 INFO ShutdownHookManager: Deleting directory /tmp/spark-e2a14548-e7f4-44e1-9e82-e30fadeb790e/pyspark-d44f42e2-13ea-44d6-a0d8-3974eb77c6cf
+24/11/26 01:25:37 INFO ShutdownHookManager: Deleting directory /tmp/spark-cce296d1-108f-4e5a-8a42-60e24959b45a
+24/11/26 01:25:37 INFO ShutdownHookManager: Deleting directory /tmp/spark-e2a14548-e7f4-44e1-9e82-e30fadeb790e
+root@355d0e55790e:/opt/spark/data# ls
+PR_data.txt  graphx  mllib  pagerank.py  streaming
+root@355d0e55790e:/opt/spark/data# ls
+PR_data.txt  graphx  mllib  pagerank.py  streaming
+root@355d0e55790e:/opt/spark/data# vom pagerank.py 
+bash: vom: command not found
+root@355d0e55790e:/opt/spark/data# apt-get install vim
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+vim is already the newest version (2:8.1.0875-5+deb10u6).
+0 upgraded, 0 newly installed, 0 to remove and 27 not upgraded.
+root@355d0e55790e:/opt/spark/data# vim pagerank.py 
+root@355d0e55790e:/opt/spark/data# vom pagerank.py ^C
+root@355d0e55790e:/opt/spark/data# ls
+PR_data.txt  graphx  mllib  pagerank.py  streaming
+root@355d0e55790e:/opt/spark/data# rm -rf pagerank.py 
+root@355d0e55790e:/opt/spark/data# ls
+PR_data.txt  graphx  mllib  pagerank.py  streaming
+root@355d0e55790e:/opt/spark/data# vim pagerank.py 
+root@355d0e55790e:/opt/spark/data# vim pagerank.py ^C
+root@355d0e55790e:/opt/spark/data# ls
+PR_data.txt  graphx  mllib  pagerank.py  streaming
+root@355d0e55790e:/opt/spark/data# spark-submit pagerank.py 
+WARNING: An illegal reflective access operation has occurred
+WARNING: Illegal reflective access by org.apache.spark.unsafe.Platform (file:/opt/spark/jars/spark-unsafe_2.12-3.0.2.jar) to constructor java.nio.DirectByteBuffer(long,int)
+WARNING: Please consider reporting this to the maintainers of org.apache.spark.unsafe.Platform
+WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
+WARNING: All illegal access operations will be denied in a future release
+24/11/26 01:29:24 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+Using Spark's default log4j profile: org/apache/spark/log4j-defaults.properties
+24/11/26 01:29:25 INFO SparkContext: Running Spark version 3.0.2
+24/11/26 01:29:25 INFO ResourceUtils: ==============================================================
+24/11/26 01:29:25 INFO ResourceUtils: Resources for spark.driver:
+
+24/11/26 01:29:25 INFO ResourceUtils: ==============================================================
+24/11/26 01:29:25 INFO SparkContext: Submitted application: PageRank
+24/11/26 01:29:25 INFO SecurityManager: Changing view acls to: root
+24/11/26 01:29:25 INFO SecurityManager: Changing modify acls to: root
+24/11/26 01:29:25 INFO SecurityManager: Changing view acls groups to: 
+24/11/26 01:29:25 INFO SecurityManager: Changing modify acls groups to: 
+24/11/26 01:29:25 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users  with view permissions: Set(root); groups with view permissions: Set(); users  with modify permissions: Set(root); groups with modify permissions: Set()
+24/11/26 01:29:25 INFO Utils: Successfully started service 'sparkDriver' on port 36013.
+24/11/26 01:29:25 INFO SparkEnv: Registering MapOutputTracker
+24/11/26 01:29:25 INFO SparkEnv: Registering BlockManagerMaster
+24/11/26 01:29:25 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+24/11/26 01:29:25 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
+24/11/26 01:29:25 INFO SparkEnv: Registering BlockManagerMasterHeartbeat
+24/11/26 01:29:25 INFO DiskBlockManager: Created local directory at /tmp/blockmgr-addcdc46-6cbb-46b3-8a58-ad746208f81b
+24/11/26 01:29:25 INFO MemoryStore: MemoryStore started with capacity 434.4 MiB
+24/11/26 01:29:25 INFO SparkEnv: Registering OutputCommitCoordinator
+24/11/26 01:29:25 INFO Utils: Successfully started service 'SparkUI' on port 4040.
+24/11/26 01:29:25 INFO SparkUI: Bound SparkUI to spark-master, and started at http://355d0e55790e:4040
+24/11/26 01:29:25 INFO Executor: Starting executor ID driver on host 355d0e55790e
+24/11/26 01:29:25 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 33421.
+24/11/26 01:29:25 INFO NettyBlockTransferService: Server created on 355d0e55790e:33421
+24/11/26 01:29:25 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+24/11/26 01:29:26 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, 355d0e55790e, 33421, None)
+24/11/26 01:29:26 INFO BlockManagerMasterEndpoint: Registering block manager 355d0e55790e:33421 with 434.4 MiB RAM, BlockManagerId(driver, 355d0e55790e, 33421, None)
+24/11/26 01:29:26 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, 355d0e55790e, 33421, None)
+24/11/26 01:29:26 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, 355d0e55790e, 33421, None)
+24/11/26 01:29:26 INFO MemoryStore: Block broadcast_0 stored as values in memory (estimated size 175.9 KiB, free 434.2 MiB)
+24/11/26 01:29:26 INFO MemoryStore: Block broadcast_0_piece0 stored as bytes in memory (estimated size 27.1 KiB, free 434.2 MiB)
+24/11/26 01:29:26 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on 355d0e55790e:33421 (size: 27.1 KiB, free: 434.4 MiB)
+24/11/26 01:29:26 INFO SparkContext: Created broadcast 0 from textFile at <unknown>:0
+24/11/26 01:29:26 INFO FileInputFormat: Total input files to process : 1
+24/11/26 01:29:27 INFO SparkContext: Starting job: collect at /opt/spark/data/pagerank.py:29
+24/11/26 01:29:27 INFO DAGScheduler: Registering RDD 3 (groupByKey at /opt/spark/data/pagerank.py:12) as input to shuffle 2
+24/11/26 01:29:27 INFO DAGScheduler: Registering RDD 10 (reduceByKey at /opt/spark/data/pagerank.py:24) as input to shuffle 10
+24/11/26 01:29:27 INFO DAGScheduler: Registering RDD 17 (reduceByKey at /opt/spark/data/pagerank.py:24) as input to shuffle 9
+24/11/26 01:29:27 INFO DAGScheduler: Registering RDD 24 (reduceByKey at /opt/spark/data/pagerank.py:24) as input to shuffle 8
+24/11/26 01:29:27 INFO DAGScheduler: Registering RDD 31 (reduceByKey at /opt/spark/data/pagerank.py:24) as input to shuffle 7
+24/11/26 01:29:27 INFO DAGScheduler: Registering RDD 38 (reduceByKey at /opt/spark/data/pagerank.py:24) as input to shuffle 6
+24/11/26 01:29:27 INFO DAGScheduler: Registering RDD 45 (reduceByKey at /opt/spark/data/pagerank.py:24) as input to shuffle 5
+24/11/26 01:29:27 INFO DAGScheduler: Registering RDD 52 (reduceByKey at /opt/spark/data/pagerank.py:24) as input to shuffle 4
+24/11/26 01:29:27 INFO DAGScheduler: Registering RDD 59 (reduceByKey at /opt/spark/data/pagerank.py:24) as input to shuffle 3
+24/11/26 01:29:27 INFO DAGScheduler: Registering RDD 66 (reduceByKey at /opt/spark/data/pagerank.py:24) as input to shuffle 1
+24/11/26 01:29:27 INFO DAGScheduler: Registering RDD 73 (reduceByKey at /opt/spark/data/pagerank.py:24) as input to shuffle 0
+24/11/26 01:29:27 INFO DAGScheduler: Got job 0 (collect at /opt/spark/data/pagerank.py:29) with 2 output partitions
+24/11/26 01:29:27 INFO DAGScheduler: Final stage: ResultStage 11 (collect at /opt/spark/data/pagerank.py:29)
+24/11/26 01:29:27 INFO DAGScheduler: Parents of final stage: List(ShuffleMapStage 10)
+24/11/26 01:29:27 INFO DAGScheduler: Missing parents: List(ShuffleMapStage 10)
+24/11/26 01:29:27 INFO DAGScheduler: Submitting ShuffleMapStage 0 (PairwiseRDD[3] at groupByKey at /opt/spark/data/pagerank.py:12), which has no missing parents
+24/11/26 01:29:27 INFO MemoryStore: Block broadcast_1 stored as values in memory (estimated size 11.3 KiB, free 434.2 MiB)
+24/11/26 01:29:27 INFO MemoryStore: Block broadcast_1_piece0 stored as bytes in memory (estimated size 6.9 KiB, free 434.2 MiB)
+24/11/26 01:29:27 INFO BlockManagerInfo: Added broadcast_1_piece0 in memory on 355d0e55790e:33421 (size: 6.9 KiB, free: 434.4 MiB)
+24/11/26 01:29:27 INFO SparkContext: Created broadcast 1 from broadcast at DAGScheduler.scala:1223
+24/11/26 01:29:27 INFO DAGScheduler: Submitting 2 missing tasks from ShuffleMapStage 0 (PairwiseRDD[3] at groupByKey at /opt/spark/data/pagerank.py:12) (first 15 tasks are for partitions Vector(0, 1))
+24/11/26 01:29:27 INFO TaskSchedulerImpl: Adding task set 0.0 with 2 tasks
+24/11/26 01:29:27 INFO TaskSetManager: Starting task 0.0 in stage 0.0 (TID 0, 355d0e55790e, executor driver, partition 0, PROCESS_LOCAL, 7362 bytes)
+24/11/26 01:29:27 INFO TaskSetManager: Starting task 1.0 in stage 0.0 (TID 1, 355d0e55790e, executor driver, partition 1, PROCESS_LOCAL, 7362 bytes)
+24/11/26 01:29:27 INFO Executor: Running task 0.0 in stage 0.0 (TID 0)
+24/11/26 01:29:27 INFO Executor: Running task 1.0 in stage 0.0 (TID 1)
+24/11/26 01:29:27 INFO HadoopRDD: Input split: file:/opt/spark/data/PR_data.txt:22+22
+24/11/26 01:29:27 INFO HadoopRDD: Input split: file:/opt/spark/data/PR_data.txt:0+22
+24/11/26 01:29:28 INFO PythonRunner: Times: total = 370, boot = 312, init = 51, finish = 7
+24/11/26 01:29:28 INFO PythonRunner: Times: total = 370, boot = 317, init = 46, finish = 7
+24/11/26 01:29:28 INFO Executor: Finished task 0.0 in stage 0.0 (TID 0). 1807 bytes result sent to driver
+24/11/26 01:29:28 INFO Executor: Finished task 1.0 in stage 0.0 (TID 1). 1807 bytes result sent to driver
+24/11/26 01:29:28 INFO TaskSetManager: Finished task 1.0 in stage 0.0 (TID 1) in 844 ms on 355d0e55790e (executor driver) (1/2)
+24/11/26 01:29:28 INFO TaskSetManager: Finished task 0.0 in stage 0.0 (TID 0) in 864 ms on 355d0e55790e (executor driver) (2/2)
+24/11/26 01:29:28 INFO TaskSchedulerImpl: Removed TaskSet 0.0, whose tasks have all completed, from pool 
+24/11/26 01:29:28 INFO PythonAccumulatorV2: Connected to AccumulatorServer at host: 127.0.0.1 port: 37323
+24/11/26 01:29:28 INFO DAGScheduler: ShuffleMapStage 0 (groupByKey at /opt/spark/data/pagerank.py:12) finished in 1.018 s
+24/11/26 01:29:28 INFO DAGScheduler: looking for newly runnable stages
+24/11/26 01:29:28 INFO DAGScheduler: running: Set()
+24/11/26 01:29:28 INFO DAGScheduler: waiting: Set(ShuffleMapStage 9, ShuffleMapStage 1, ShuffleMapStage 5, ShuffleMapStage 2, ShuffleMapStage 6, ShuffleMapStage 3, ShuffleMapStage 10, ShuffleMapStage 7, ShuffleMapStage 4, ResultStage 11, ShuffleMapStage 8)
+24/11/26 01:29:28 INFO DAGScheduler: failed: Set()
+24/11/26 01:29:28 INFO DAGScheduler: Submitting ShuffleMapStage 1 (PairwiseRDD[10] at reduceByKey at /opt/spark/data/pagerank.py:24), which has no missing parents
+24/11/26 01:29:28 INFO MemoryStore: Block broadcast_2 stored as values in memory (estimated size 20.7 KiB, free 434.2 MiB)
+24/11/26 01:29:28 INFO MemoryStore: Block broadcast_2_piece0 stored as bytes in memory (estimated size 8.7 KiB, free 434.2 MiB)
+24/11/26 01:29:28 INFO BlockManagerInfo: Added broadcast_2_piece0 in memory on 355d0e55790e:33421 (size: 8.7 KiB, free: 434.4 MiB)
+24/11/26 01:29:28 INFO SparkContext: Created broadcast 2 from broadcast at DAGScheduler.scala:1223
+24/11/26 01:29:28 INFO DAGScheduler: Submitting 2 missing tasks from ShuffleMapStage 1 (PairwiseRDD[10] at reduceByKey at /opt/spark/data/pagerank.py:24) (first 15 tasks are for partitions Vector(0, 1))
+24/11/26 01:29:28 INFO TaskSchedulerImpl: Adding task set 1.0 with 2 tasks
+24/11/26 01:29:28 INFO TaskSetManager: Starting task 0.0 in stage 1.0 (TID 2, 355d0e55790e, executor driver, partition 0, NODE_LOCAL, 7313 bytes)
+24/11/26 01:29:28 INFO TaskSetManager: Starting task 1.0 in stage 1.0 (TID 3, 355d0e55790e, executor driver, partition 1, NODE_LOCAL, 7313 bytes)
+24/11/26 01:29:28 INFO Executor: Running task 1.0 in stage 1.0 (TID 3)
+24/11/26 01:29:28 INFO Executor: Running task 0.0 in stage 1.0 (TID 2)
+24/11/26 01:29:28 INFO ShuffleBlockFetcherIterator: Getting 2 (160.0 B) non-empty blocks including 2 (160.0 B) local and 0 (0.0 B) host-local and 0 (0.0 B) remote blocks
+24/11/26 01:29:28 INFO ShuffleBlockFetcherIterator: Getting 2 (194.0 B) non-empty blocks including 2 (194.0 B) local and 0 (0.0 B) host-local and 0 (0.0 B) remote blocks
+24/11/26 01:29:28 INFO ShuffleBlockFetcherIterator: Started 0 remote fetches in 11 ms
+24/11/26 01:29:28 INFO ShuffleBlockFetcherIterator: Started 0 remote fetches in 13 ms
+24/11/26 01:29:28 INFO PythonRunner: Times: total = 53, boot = 6, init = 43, finish = 4
+24/11/26 01:29:28 INFO ShuffleBlockFetcherIterator: Getting 2 (160.0 B) non-empty blocks including 2 (160.0 B) local and 0 (0.0 B) host-local and 0 (0.0 B) remote blocks
+24/11/26 01:29:28 INFO ShuffleBlockFetcherIterator: Started 0 remote fetches in 0 ms
+24/11/26 01:29:28 INFO PythonRunner: Times: total = 62, boot = 13, init = 42, finish = 7
+24/11/26 01:29:28 INFO ShuffleBlockFetcherIterator: Getting 2 (194.0 B) non-empty blocks including 2 (194.0 B) local and 0 (0.0 B) host-local and 0 (0.0 B) remote blocks
+24/11/26 01:29:28 INFO ShuffleBlockFetcherIterator: Started 0 remote fetches in 1 ms
+24/11/26 01:29:28 INFO PythonRunner: Times: total = 42, boot = 15, init = 27, finish = 0
+24/11/26 01:29:28 INFO PythonRunner: Times: total = 143, boot = -447, init = 589, finish = 1
+24/11/26 01:29:28 INFO Executor: Finished task 0.0 in stage 1.0 (TID 2). 1979 bytes result sent to driver
+24/11/26 01:29:28 INFO PythonRunner: Times: total = 44, boot = 13, init = 30, finish = 1
+24/11/26 01:29:28 INFO TaskSetManager: Finished task 0.0 in stage 1.0 (TID 2) in 197 ms on 355d0e55790e (executor driver) (1/2)
+24/11/26 01:29:28 INFO PythonRunner: Times: total = 154, boot = -448, init = 601, finish = 1
+24/11/26 01:29:28 INFO Executor: Finished task 1.0 in stage 1.0 (TID 3). 1979 bytes result sent to driver
+24/11/26 01:29:28 INFO TaskSetManager: Finished task 1.0 in stage 1.0 (TID 3) in 210 ms on 355d0e55790e (executor driver) (2/2)
+24/11/26 01:29:28 INFO TaskSchedulerImpl: Removed TaskSet 1.0, whose tasks have all completed, from pool 
+24/11/26 01:29:28 INFO DAGScheduler: ShuffleMapStage 1 (reduceByKey at /opt/spark/data/pagerank.py:24) finished in 0.238 s
+24/11/26 01:29:28 INFO DAGScheduler: looking for newly runnable stages
+24/11/26 01:29:28 INFO DAGScheduler: running: Set()
+24/11/26 01:29:28 INFO DAGScheduler: waiting: Set(ShuffleMapStage 9, ShuffleMapStage 5, ShuffleMapStage 2, ShuffleMapStage 6, ShuffleMapStage 3, ShuffleMapStage 10, ShuffleMapStage 7, ShuffleMapStage 4, ResultStage 11, ShuffleMapStage 8)
+24/11/26 01:29:28 INFO DAGScheduler: failed: Set()
+24/11/26 01:29:28 INFO DAGScheduler: Submitting ShuffleMapStage 2 (PairwiseRDD[17] at reduceByKey at /opt/spark/data/pagerank.py:24), which has no missing parents
+24/11/26 01:29:28 INFO MemoryStore: Block broadcast_3 stored as values in memory (estimated size 20.3 KiB, free 434.1 MiB)
+24/11/26 01:29:28 INFO MemoryStore: Block broadcast_3_piece0 stored as bytes in memory (estimated size 8.8 KiB, free 434.1 MiB)
+24/11/26 01:29:28 INFO BlockManagerInfo: Added broadcast_3_piece0 in memory on 355d0e55790e:33421 (size: 8.8 KiB, free: 434.3 MiB)
+24/11/26 01:29:28 INFO SparkContext: Created broadcast 3 from broadcast at DAGScheduler.scala:1223
+24/11/26 01:29:28 INFO DAGScheduler: Submitting 2 missing tasks from ShuffleMapStage 2 (PairwiseRDD[17] at reduceByKey at /opt/spark/data/pagerank.py:24) (first 15 tasks are for partitions Vector(0, 1))
+24/11/26 01:29:28 INFO TaskSchedulerImpl: Adding task set 2.0 with 2 tasks
+24/11/26 01:29:28 INFO TaskSetManager: Starting task 0.0 in stage 2.0 (TID 4, 355d0e55790e, executor driver, partition 0, NODE_LOCAL, 7322 bytes)
+24/11/26 01:29:28 INFO TaskSetManager: Starting task 1.0 in stage 2.0 (TID 5, 355d0e55790e, executor driver, partition 1, NODE_LOCAL, 7322 bytes)
+24/11/26 01:29:28 INFO Executor: Running task 1.0 in stage 2.0 (TID 5)
+24/11/26 01:29:28 INFO Executor: Running task 0.0 in stage 2.0 (TID 4)
+24/11/26 01:29:28 INFO ShuffleBlockFetcherIterator: Getting 2 (194.0 B) non-empty blocks including 2 (194.0 B) local and 0 (0.0 B) host-local and 0 (0.0 B) remote blocks
+24/11/26 01:29:28 INFO ShuffleBlockFetcherIterator: Started 0 remote fetches in 1 ms
+24/11/26 01:29:28 INFO ShuffleBlockFetcherIterator: Getting 2 (160.0 B) non-empty blocks including 2 (160.0 B) local and 0 (0.0 B) host-local and 0 (0.0 B) remote blocks
+24/11/26 01:29:28 INFO ShuffleBlockFetcherIterator: Started 0 remote fetches in 0 ms
+24/11/26 01:29:28 INFO PythonRunner: Times: total = 42, boot = -47, init = 89, finish = 0
+24/11/26 01:29:28 INFO PythonRunner: Times: total = 43, boot = -46, init = 89, finish = 0
+24/11/26 01:29:28 INFO ShuffleBlockFetcherIterator: Getting 2 (205.0 B) non-empty blocks including 2 (205.0 B) local and 0 (0.0 B) host-local and 0 (0.0 B) remote blocks
+24/11/26 01:29:28 INFO ShuffleBlockFetcherIterator: Getting 1 (80.0 B) non-empty blocks including 1 (80.0 B) local and 0 (0.0 B) host-local and 0 (0.0 B) remote blocks
+24/11/26 01:29:28 INFO ShuffleBlockFetcherIterator: Started 0 remote fetches in 1 ms
+24/11/26 01:29:28 INFO ShuffleBlockFetcherIterator: Started 0 remote fetches in 2 ms
+24/11/26 01:29:28 INFO PythonRunner: Times: total = 44, boot = 5, init = 38, finish = 1
+24/11/26 01:29:28 INFO PythonRunner: Times: total = 43, boot = 5, init = 37, finish = 1
+24/11/26 01:29:28 INFO PythonRunner: Times: total = 105, boot = -48, init = 152, finish = 1
+24/11/26 01:29:28 INFO Executor: Finished task 0.0 in stage 2.0 (TID 4). 1979 bytes result sent to driver
+24/11/26 01:29:28 INFO TaskSetManager: Finished task 0.0 in stage 2.0 (TID 4) in 144 ms on 355d0e55790e (executor driver) (1/2)
+24/11/26 01:29:28 INFO PythonRunner: Times: total = 109, boot = -50, init = 156, finish = 3
+24/11/26 01:29:28 INFO Executor: Finished task 1.0 in stage 2.0 (TID 5). 1979 bytes result sent to driver
+24/11/26 01:29:28 INFO TaskSetManager: Finished task 1.0 in stage 2.0 (TID 5) in 165 ms on 355d0e55790e (executor driver) (2/2)
+24/11/26 01:29:28 INFO TaskSchedulerImpl: Removed TaskSet 2.0, whose tasks have all completed, from pool 
+24/11/26 01:29:28 INFO DAGScheduler: ShuffleMapStage 2 (reduceByKey at /opt/spark/data/pagerank.py:24) finished in 0.184 s
+24/11/26 01:29:28 INFO DAGScheduler: looking for newly runnable stages
+24/11/26 01:29:28 INFO DAGScheduler: running: Set()
+24/11/26 01:29:28 INFO DAGScheduler: waiting: Set(ShuffleMapStage 9, ShuffleMapStage 5, ShuffleMapStage 6, ShuffleMapStage 3, ShuffleMapStage 10, ShuffleMapStage 7, ShuffleMapStage 4, ResultStage 11, ShuffleMapStage 8)
+24/11/26 01:29:28 INFO DAGScheduler: failed: Set()
+24/11/26 01:29:28 INFO DAGScheduler: Submitting ShuffleMapStage 3 (PairwiseRDD[24] at reduceByKey at /opt/spark/data/pagerank.py:24), which has no missing parents
+24/11/26 01:29:28 INFO MemoryStore: Block broadcast_4 stored as values in memory (estimated size 20.3 KiB, free 434.1 MiB)
+24/11/26 01:29:28 INFO MemoryStore: Block broadcast_4_piece0 stored as bytes in memory (estimated size 8.8 KiB, free 434.1 MiB)
+24/11/26 01:29:28 INFO BlockManagerInfo: Added broadcast_4_piece0 in memory on 355d0e55790e:33421 (size: 8.8 KiB, free: 434.3 MiB)
+24/11/26 01:29:28 INFO SparkContext: Created broadcast 4 from broadcast at DAGScheduler.scala:1223
+24/11/26 01:29:28 INFO DAGScheduler: Submitting 2 missing tasks from ShuffleMapStage 3 (PairwiseRDD[24] at reduceByKey at /opt/spark/data/pagerank.py:24) (first 15 tasks are for partitions Vector(0, 1))
+24/11/26 01:29:28 INFO TaskSchedulerImpl: Adding task set 3.0 with 2 tasks
+24/11/26 01:29:28 INFO TaskSetManager: Starting task 0.0 in stage 3.0 (TID 6, 355d0e55790e, executor driver, partition 0, NODE_LOCAL, 7322 bytes)
+24/11/26 01:29:28 INFO TaskSetManager: Starting task 1.0 in stage 3.0 (TID 7, 355d0e55790e, executor driver, partition 1, NODE_LOCAL, 7322 bytes)
+24/11/26 01:29:28 INFO Executor: Running task 1.0 in stage 3.0 (TID 7)
+24/11/26 01:29:28 INFO Executor: Running task 0.0 in stage 3.0 (TID 6)
+24/11/26 01:29:28 INFO ShuffleBlockFetcherIterator: Getting 2 (194.0 B) non-empty blocks including 2 (194.0 B) local and 0 (0.0 B) host-local and 0 (0.0 B) remote blocks
+24/11/26 01:29:28 INFO ShuffleBlockFetcherIterator: Getting 2 (160.0 B) non-empty blocks including 2 (160.0 B) local and 0 (0.0 B) host-local and 0 (0.0 B) remote blocks
+24/11/26 01:29:28 INFO ShuffleBlockFetcherIterator: Started 0 remote fetches in 1 ms
+24/11/26 01:29:28 INFO ShuffleBlockFetcherIterator: Started 0 remote fetches in 1 ms
+24/11/26 01:29:28 INFO PythonRunner: Times: total = 42, boot = -86, init = 128, finish = 0
+24/11/26 01:29:28 INFO PythonRunner: Times: total = 42, boot = -78, init = 120, finish = 0
+24/11/26 01:29:28 INFO ShuffleBlockFetcherIterator: Getting 2 (217.0 B) non-empty blocks including 2 (217.0 B) local and 0 (0.0 B) host-local and 0 (0.0 B) remote blocks
+24/11/26 01:29:28 INFO ShuffleBlockFetcherIterator: Getting 1 (80.0 B) non-empty blocks including 1 (80.0 B) local and 0 (0.0 B) host-local and 0 (0.0 B) remote blocks
+24/11/26 01:29:28 INFO ShuffleBlockFetcherIterator: Started 0 remote fetches in 0 ms
+24/11/26 01:29:28 INFO ShuffleBlockFetcherIterator: Started 0 remote fetches in 1 ms
+24/11/26 01:29:29 INFO PythonRunner: Times: total = 42, boot = 7, init = 35, finish = 0
+24/11/26 01:29:29 INFO PythonRunner: Times: total = 43, boot = 7, init = 36, finish = 0
+24/11/26 01:29:29 INFO PythonRunner: Times: total = 100, boot = -82, init = 181, finish = 1
+24/11/26 01:29:29 INFO Executor: Finished task 0.0 in stage 3.0 (TID 6). 1979 bytes result sent to driver
+24/11/26 01:29:29 INFO PythonRunner: Times: total = 99, boot = -82, init = 180, finish = 1
+24/11/26 01:29:29 INFO TaskSetManager: Finished task 0.0 in stage 3.0 (TID 6) in 116 ms on 355d0e55790e (executor driver) (1/2)
+24/11/26 01:29:29 INFO Executor: Finished task 1.0 in stage 3.0 (TID 7). 1979 bytes result sent to driver
+24/11/26 01:29:29 INFO TaskSetManager: Finished task 1.0 in stage 3.0 (TID 7) in 121 ms on 355d0e55790e (executor driver) (2/2)
+24/11/26 01:29:29 INFO TaskSchedulerImpl: Removed TaskSet 3.0, whose tasks have all completed, from pool 
+24/11/26 01:29:29 INFO DAGScheduler: ShuffleMapStage 3 (reduceByKey at /opt/spark/data/pagerank.py:24) finished in 0.142 s
+24/11/26 01:29:29 INFO DAGScheduler: looking for newly runnable stages
+24/11/26 01:29:29 INFO DAGScheduler: running: Set()
+24/11/26 01:29:29 INFO DAGScheduler: waiting: Set(ShuffleMapStage 9, ShuffleMapStage 5, ShuffleMapStage 6, ShuffleMapStage 10, ShuffleMapStage 7, ShuffleMapStage 4, ResultStage 11, ShuffleMapStage 8)
+24/11/26 01:29:29 INFO DAGScheduler: failed: Set()
+24/11/26 01:29:29 INFO DAGScheduler: Submitting ShuffleMapStage 4 (PairwiseRDD[31] at reduceByKey at /opt/spark/data/pagerank.py:24), which has no missing parents
+24/11/26 01:29:29 INFO MemoryStore: Block broadcast_5 stored as values in memory (estimated size 20.3 KiB, free 434.1 MiB)
+24/11/26 01:29:29 INFO MemoryStore: Block broadcast_5_piece0 stored as bytes in memory (estimated size 8.8 KiB, free 434.1 MiB)
+24/11/26 01:29:29 INFO BlockManagerInfo: Added broadcast_5_piece0 in memory on 355d0e55790e:33421 (size: 8.8 KiB, free: 434.3 MiB)
+24/11/26 01:29:29 INFO SparkContext: Created broadcast 5 from broadcast at DAGScheduler.scala:1223
+24/11/26 01:29:29 INFO DAGScheduler: Submitting 2 missing tasks from ShuffleMapStage 4 (PairwiseRDD[31] at reduceByKey at /opt/spark/data/pagerank.py:24) (first 15 tasks are for partitions Vector(0, 1))
+24/11/26 01:29:29 INFO TaskSchedulerImpl: Adding task set 4.0 with 2 tasks
+24/11/26 01:29:29 INFO TaskSetManager: Starting task 0.0 in stage 4.0 (TID 8, 355d0e55790e, executor driver, partition 0, NODE_LOCAL, 7322 bytes)
+24/11/26 01:29:29 INFO TaskSetManager: Starting task 1.0 in stage 4.0 (TID 9, 355d0e55790e, executor driver, partition 1, NODE_LOCAL, 7322 bytes)
+24/11/26 01:29:29 INFO Executor: Running task 0.0 in stage 4.0 (TID 8)
+24/11/26 01:29:29 INFO Executor: Running task 1.0 in stage 4.0 (TID 9)
+24/11/26 01:29:29 INFO ShuffleBlockFetcherIterator: Getting 2 (194.0 B) non-empty blocks including 2 (194.0 B) local and 0 (0.0 B) host-local and 0 (0.0 B) remote blocks
+24/11/26 01:29:29 INFO ShuffleBlockFetcherIterator: Getting 2 (160.0 B) non-empty blocks including 2 (160.0 B) local and 0 (0.0 B) host-local and 0 (0.0 B) remote blocks
+24/11/26 01:29:29 INFO ShuffleBlockFetcherIterator: Started 0 remote fetches in 1 ms
+24/11/26 01:29:29 INFO ShuffleBlockFetcherIterator: Started 0 remote fetches in 1 ms
+24/11/26 01:29:29 INFO PythonRunner: Times: total = 43, boot = -43, init = 86, finish = 0
+24/11/26 01:29:29 INFO PythonRunner: Times: total = 43, boot = -41, init = 84, finish = 0
+24/11/26 01:29:29 INFO ShuffleBlockFetcherIterator: Getting 2 (230.0 B) non-empty blocks including 2 (230.0 B) local and 0 (0.0 B) host-local and 0 (0.0 B) remote blocks
+24/11/26 01:29:29 INFO ShuffleBlockFetcherIterator: Getting 1 (80.0 B) non-empty blocks including 1 (80.0 B) local and 0 (0.0 B) host-local and 0 (0.0 B) remote blocks
+24/11/26 01:29:29 INFO ShuffleBlockFetcherIterator: Started 0 remote fetches in 0 ms
+24/11/26 01:29:29 INFO ShuffleBlockFetcherIterator: Started 0 remote fetches in 0 ms
+24/11/26 01:29:29 INFO PythonRunner: Times: total = 42, boot = 5, init = 37, finish = 0
+24/11/26 01:29:29 INFO PythonRunner: Times: total = 42, boot = 5, init = 37, finish = 0
+24/11/26 01:29:29 INFO PythonRunner: Times: total = 99, boot = -37, init = 135, finish = 1
+24/11/26 01:29:29 INFO Executor: Finished task 0.0 in stage 4.0 (TID 8). 1979 bytes result sent to driver
+24/11/26 01:29:29 INFO TaskSetManager: Finished task 0.0 in stage 4.0 (TID 8) in 117 ms on 355d0e55790e (executor driver) (1/2)
+24/11/26 01:29:29 INFO PythonRunner: Times: total = 99, boot = -36, init = 134, finish = 1
+24/11/26 01:29:29 INFO Executor: Finished task 1.0 in stage 4.0 (TID 9). 1979 bytes result sent to driver
+24/11/26 01:29:29 INFO TaskSetManager: Finished task 1.0 in stage 4.0 (TID 9) in 126 ms on 355d0e55790e (executor driver) (2/2)
+24/11/26 01:29:29 INFO TaskSchedulerImpl: Removed TaskSet 4.0, whose tasks have all completed, from pool 
+24/11/26 01:29:29 INFO DAGScheduler: ShuffleMapStage 4 (reduceByKey at /opt/spark/data/pagerank.py:24) finished in 0.143 s
+24/11/26 01:29:29 INFO DAGScheduler: looking for newly runnable stages
+24/11/26 01:29:29 INFO DAGScheduler: running: Set()
+24/11/26 01:29:29 INFO DAGScheduler: waiting: Set(ShuffleMapStage 9, ShuffleMapStage 5, ShuffleMapStage 6, ShuffleMapStage 10, ShuffleMapStage 7, ResultStage 11, ShuffleMapStage 8)
+24/11/26 01:29:29 INFO DAGScheduler: failed: Set()
+24/11/26 01:29:29 INFO DAGScheduler: Submitting ShuffleMapStage 5 (PairwiseRDD[38] at reduceByKey at /opt/spark/data/pagerank.py:24), which has no missing parents
+24/11/26 01:29:29 INFO MemoryStore: Block broadcast_6 stored as values in memory (estimated size 20.3 KiB, free 434.1 MiB)
+24/11/26 01:29:29 INFO MemoryStore: Block broadcast_6_piece0 stored as bytes in memory (estimated size 8.8 KiB, free 434.0 MiB)
+24/11/26 01:29:29 INFO BlockManagerInfo: Added broadcast_6_piece0 in memory on 355d0e55790e:33421 (size: 8.8 KiB, free: 434.3 MiB)
+24/11/26 01:29:29 INFO SparkContext: Created broadcast 6 from broadcast at DAGScheduler.scala:1223
+24/11/26 01:29:29 INFO DAGScheduler: Submitting 2 missing tasks from ShuffleMapStage 5 (PairwiseRDD[38] at reduceByKey at /opt/spark/data/pagerank.py:24) (first 15 tasks are for partitions Vector(0, 1))
+24/11/26 01:29:29 INFO TaskSchedulerImpl: Adding task set 5.0 with 2 tasks
+24/11/26 01:29:29 INFO TaskSetManager: Starting task 0.0 in stage 5.0 (TID 10, 355d0e55790e, executor driver, partition 0, NODE_LOCAL, 7322 bytes)
+24/11/26 01:29:29 INFO TaskSetManager: Starting task 1.0 in stage 5.0 (TID 11, 355d0e55790e, executor driver, partition 1, NODE_LOCAL, 7322 bytes)
+24/11/26 01:29:29 INFO Executor: Running task 0.0 in stage 5.0 (TID 10)
+24/11/26 01:29:29 INFO Executor: Running task 1.0 in stage 5.0 (TID 11)
+24/11/26 01:29:29 INFO ShuffleBlockFetcherIterator: Getting 2 (194.0 B) non-empty blocks including 2 (194.0 B) local and 0 (0.0 B) host-local and 0 (0.0 B) remote blocks
+24/11/26 01:29:29 INFO ShuffleBlockFetcherIterator: Getting 2 (160.0 B) non-empty blocks including 2 (160.0 B) local and 0 (0.0 B) host-local and 0 (0.0 B) remote blocks
+24/11/26 01:29:29 INFO ShuffleBlockFetcherIterator: Started 0 remote fetches in 1 ms
+24/11/26 01:29:29 INFO ShuffleBlockFetcherIterator: Started 0 remote fetches in 1 ms
+24/11/26 01:29:29 INFO PythonRunner: Times: total = 42, boot = -57, init = 99, finish = 0
+24/11/26 01:29:29 INFO PythonRunner: Times: total = 43, boot = -57, init = 100, finish = 0
+24/11/26 01:29:29 INFO ShuffleBlockFetcherIterator: Getting 1 (80.0 B) non-empty blocks including 1 (80.0 B) local and 0 (0.0 B) host-local and 0 (0.0 B) remote blocks
+24/11/26 01:29:29 INFO ShuffleBlockFetcherIterator: Started 0 remote fetches in 0 ms
+24/11/26 01:29:29 INFO ShuffleBlockFetcherIterator: Getting 2 (230.0 B) non-empty blocks including 2 (230.0 B) local and 0 (0.0 B) host-local and 0 (0.0 B) remote blocks
+24/11/26 01:29:29 INFO ShuffleBlockFetcherIterator: Started 0 remote fetches in 0 ms
+24/11/26 01:29:29 INFO PythonRunner: Times: total = 43, boot = 5, init = 37, finish = 1
+24/11/26 01:29:29 INFO PythonRunner: Times: total = 45, boot = 5, init = 39, finish = 1
+24/11/26 01:29:29 INFO PythonRunner: Times: total = 107, boot = -45, init = 150, finish = 2
+24/11/26 01:29:29 INFO Executor: Finished task 0.0 in stage 5.0 (TID 10). 1979 bytes result sent to driver
+24/11/26 01:29:29 INFO TaskSetManager: Finished task 0.0 in stage 5.0 (TID 10) in 138 ms on 355d0e55790e (executor driver) (1/2)
+24/11/26 01:29:29 INFO PythonRunner: Times: total = 111, boot = -44, init = 152, finish = 3
+24/11/26 01:29:29 INFO Executor: Finished task 1.0 in stage 5.0 (TID 11). 1979 bytes result sent to driver
+24/11/26 01:29:29 INFO TaskSetManager: Finished task 1.0 in stage 5.0 (TID 11) in 154 ms on 355d0e55790e (executor driver) (2/2)
+24/11/26 01:29:29 INFO TaskSchedulerImpl: Removed TaskSet 5.0, whose tasks have all completed, from pool 
+24/11/26 01:29:29 INFO DAGScheduler: ShuffleMapStage 5 (reduceByKey at /opt/spark/data/pagerank.py:24) finished in 0.177 s
+24/11/26 01:29:29 INFO DAGScheduler: looking for newly runnable stages
+24/11/26 01:29:29 INFO DAGScheduler: running: Set()
+24/11/26 01:29:29 INFO DAGScheduler: waiting: Set(ShuffleMapStage 9, ShuffleMapStage 6, ShuffleMapStage 10, ShuffleMapStage 7, ResultStage 11, ShuffleMapStage 8)
+24/11/26 01:29:29 INFO DAGScheduler: failed: Set()
+24/11/26 01:29:29 INFO DAGScheduler: Submitting ShuffleMapStage 6 (PairwiseRDD[45] at reduceByKey at /opt/spark/data/pagerank.py:24), which has no missing parents
+24/11/26 01:29:29 INFO MemoryStore: Block broadcast_7 stored as values in memory (estimated size 20.3 KiB, free 434.0 MiB)
+24/11/26 01:29:29 INFO MemoryStore: Block broadcast_7_piece0 stored as bytes in memory (estimated size 8.8 KiB, free 434.0 MiB)
+24/11/26 01:29:29 INFO BlockManagerInfo: Added broadcast_7_piece0 in memory on 355d0e55790e:33421 (size: 8.8 KiB, free: 434.3 MiB)
+24/11/26 01:29:29 INFO SparkContext: Created broadcast 7 from broadcast at DAGScheduler.scala:1223
+24/11/26 01:29:29 INFO DAGScheduler: Submitting 2 missing tasks from ShuffleMapStage 6 (PairwiseRDD[45] at reduceByKey at /opt/spark/data/pagerank.py:24) (first 15 tasks are for partitions Vector(0, 1))
+24/11/26 01:29:29 INFO TaskSchedulerImpl: Adding task set 6.0 with 2 tasks
+24/11/26 01:29:29 INFO TaskSetManager: Starting task 0.0 in stage 6.0 (TID 12, 355d0e55790e, executor driver, partition 0, NODE_LOCAL, 7322 bytes)
+24/11/26 01:29:29 INFO TaskSetManager: Starting task 1.0 in stage 6.0 (TID 13, 355d0e55790e, executor driver, partition 1, NODE_LOCAL, 7322 bytes)
+24/11/26 01:29:29 INFO Executor: Running task 0.0 in stage 6.0 (TID 12)
+24/11/26 01:29:29 INFO Executor: Running task 1.0 in stage 6.0 (TID 13)
+24/11/26 01:29:29 INFO ShuffleBlockFetcherIterator: Getting 2 (194.0 B) non-empty blocks including 2 (194.0 B) local and 0 (0.0 B) host-local and 0 (0.0 B) remote blocks
+24/11/26 01:29:29 INFO ShuffleBlockFetcherIterator: Getting 2 (160.0 B) non-empty blocks including 2 (160.0 B) local and 0 (0.0 B) host-local and 0 (0.0 B) remote blocks
+24/11/26 01:29:29 INFO ShuffleBlockFetcherIterator: Started 0 remote fetches in 2 ms
+24/11/26 01:29:29 INFO ShuffleBlockFetcherIterator: Started 0 remote fetches in 2 ms
+24/11/26 01:29:29 INFO PythonRunner: Times: total = 44, boot = -116, init = 160, finish = 0
+24/11/26 01:29:29 INFO PythonRunner: Times: total = 44, boot = -111, init = 155, finish = 0
+24/11/26 01:29:29 INFO ShuffleBlockFetcherIterator: Getting 2 (230.0 B) non-empty blocks including 2 (230.0 B) local and 0 (0.0 B) host-local and 0 (0.0 B) remote blocks
+24/11/26 01:29:29 INFO ShuffleBlockFetcherIterator: Started 0 remote fetches in 0 ms
+24/11/26 01:29:29 INFO ShuffleBlockFetcherIterator: Getting 1 (80.0 B) non-empty blocks including 1 (80.0 B) local and 0 (0.0 B) host-local and 0 (0.0 B) remote blocks
+24/11/26 01:29:29 INFO ShuffleBlockFetcherIterator: Started 0 remote fetches in 2 ms
+24/11/26 01:29:29 INFO PythonRunner: Times: total = 42, boot = 5, init = 37, finish = 0
+24/11/26 01:29:29 INFO PythonRunner: Times: total = 43, boot = 4, init = 39, finish = 0
+24/11/26 01:29:29 INFO PythonRunner: Times: total = 119, boot = -97, init = 216, finish = 0
+24/11/26 01:29:29 INFO PythonRunner: Times: total = 115, boot = -95, init = 209, finish = 1
+24/11/26 01:29:29 INFO Executor: Finished task 0.0 in stage 6.0 (TID 12). 1979 bytes result sent to driver
+24/11/26 01:29:29 INFO TaskSetManager: Finished task 0.0 in stage 6.0 (TID 12) in 150 ms on 355d0e55790e (executor driver) (1/2)
+24/11/26 01:29:29 INFO Executor: Finished task 1.0 in stage 6.0 (TID 13). 1979 bytes result sent to driver
+24/11/26 01:29:29 INFO TaskSetManager: Finished task 1.0 in stage 6.0 (TID 13) in 153 ms on 355d0e55790e (executor driver) (2/2)
+24/11/26 01:29:29 INFO TaskSchedulerImpl: Removed TaskSet 6.0, whose tasks have all completed, from pool 
+24/11/26 01:29:29 INFO DAGScheduler: ShuffleMapStage 6 (reduceByKey at /opt/spark/data/pagerank.py:24) finished in 0.195 s
+24/11/26 01:29:29 INFO DAGScheduler: looking for newly runnable stages
+24/11/26 01:29:29 INFO DAGScheduler: running: Set()
+24/11/26 01:29:29 INFO DAGScheduler: waiting: Set(ShuffleMapStage 9, ShuffleMapStage 10, ShuffleMapStage 7, ResultStage 11, ShuffleMapStage 8)
+24/11/26 01:29:29 INFO DAGScheduler: failed: Set()
+24/11/26 01:29:29 INFO DAGScheduler: Submitting ShuffleMapStage 7 (PairwiseRDD[52] at reduceByKey at /opt/spark/data/pagerank.py:24), which has no missing parents
+24/11/26 01:29:29 INFO MemoryStore: Block broadcast_8 stored as values in memory (estimated size 20.3 KiB, free 434.0 MiB)
+24/11/26 01:29:29 INFO MemoryStore: Block broadcast_8_piece0 stored as bytes in memory (estimated size 8.8 KiB, free 434.0 MiB)
+24/11/26 01:29:29 INFO BlockManagerInfo: Added broadcast_8_piece0 in memory on 355d0e55790e:33421 (size: 8.8 KiB, free: 434.3 MiB)
+24/11/26 01:29:29 INFO SparkContext: Created broadcast 8 from broadcast at DAGScheduler.scala:1223
+24/11/26 01:29:29 INFO DAGScheduler: Submitting 2 missing tasks from ShuffleMapStage 7 (PairwiseRDD[52] at reduceByKey at /opt/spark/data/pagerank.py:24) (first 15 tasks are for partitions Vector(0, 1))
+24/11/26 01:29:29 INFO TaskSchedulerImpl: Adding task set 7.0 with 2 tasks
+24/11/26 01:29:29 INFO TaskSetManager: Starting task 0.0 in stage 7.0 (TID 14, 355d0e55790e, executor driver, partition 0, NODE_LOCAL, 7322 bytes)
+24/11/26 01:29:29 INFO TaskSetManager: Starting task 1.0 in stage 7.0 (TID 15, 355d0e55790e, executor driver, partition 1, NODE_LOCAL, 7322 bytes)
+24/11/26 01:29:29 INFO Executor: Running task 0.0 in stage 7.0 (TID 14)
+24/11/26 01:29:29 INFO Executor: Running task 1.0 in stage 7.0 (TID 15)
+24/11/26 01:29:29 INFO ShuffleBlockFetcherIterator: Getting 2 (160.0 B) non-empty blocks including 2 (160.0 B) local and 0 (0.0 B) host-local and 0 (0.0 B) remote blocks
+24/11/26 01:29:29 INFO ShuffleBlockFetcherIterator: Started 0 remote fetches in 0 ms
+24/11/26 01:29:29 INFO ShuffleBlockFetcherIterator: Getting 2 (194.0 B) non-empty blocks including 2 (194.0 B) local and 0 (0.0 B) host-local and 0 (0.0 B) remote blocks
+24/11/26 01:29:29 INFO ShuffleBlockFetcherIterator: Started 0 remote fetches in 0 ms
+24/11/26 01:29:29 INFO PythonRunner: Times: total = 42, boot = -45, init = 87, finish = 0
+24/11/26 01:29:29 INFO ShuffleBlockFetcherIterator: Getting 1 (80.0 B) non-empty blocks including 1 (80.0 B) local and 0 (0.0 B) host-local and 0 (0.0 B) remote blocks
+24/11/26 01:29:29 INFO ShuffleBlockFetcherIterator: Started 0 remote fetches in 0 ms
+24/11/26 01:29:29 INFO PythonRunner: Times: total = 43, boot = -50, init = 93, finish = 0
+24/11/26 01:29:29 INFO ShuffleBlockFetcherIterator: Getting 2 (230.0 B) non-empty blocks including 2 (230.0 B) local and 0 (0.0 B) host-local and 0 (0.0 B) remote blocks
+24/11/26 01:29:29 INFO ShuffleBlockFetcherIterator: Started 0 remote fetches in 0 ms
+24/11/26 01:29:29 INFO PythonRunner: Times: total = 42, boot = 6, init = 36, finish = 0
+24/11/26 01:29:29 INFO PythonRunner: Times: total = 96, boot = -43, init = 139, finish = 0
+24/11/26 01:29:29 INFO PythonRunner: Times: total = 43, boot = 5, init = 38, finish = 0
+24/11/26 01:29:29 INFO Executor: Finished task 0.0 in stage 7.0 (TID 14). 1979 bytes result sent to driver
+24/11/26 01:29:29 INFO TaskSetManager: Finished task 0.0 in stage 7.0 (TID 14) in 110 ms on 355d0e55790e (executor driver) (1/2)
+24/11/26 01:29:29 INFO PythonRunner: Times: total = 99, boot = -41, init = 139, finish = 1
+24/11/26 01:29:29 INFO Executor: Finished task 1.0 in stage 7.0 (TID 15). 1979 bytes result sent to driver
+24/11/26 01:29:29 INFO TaskSetManager: Finished task 1.0 in stage 7.0 (TID 15) in 121 ms on 355d0e55790e (executor driver) (2/2)
+24/11/26 01:29:29 INFO TaskSchedulerImpl: Removed TaskSet 7.0, whose tasks have all completed, from pool 
+24/11/26 01:29:29 INFO DAGScheduler: ShuffleMapStage 7 (reduceByKey at /opt/spark/data/pagerank.py:24) finished in 0.139 s
+24/11/26 01:29:29 INFO DAGScheduler: looking for newly runnable stages
+24/11/26 01:29:29 INFO DAGScheduler: running: Set()
+24/11/26 01:29:29 INFO DAGScheduler: waiting: Set(ShuffleMapStage 9, ShuffleMapStage 10, ResultStage 11, ShuffleMapStage 8)
+24/11/26 01:29:29 INFO DAGScheduler: failed: Set()
+24/11/26 01:29:29 INFO DAGScheduler: Submitting ShuffleMapStage 8 (PairwiseRDD[59] at reduceByKey at /opt/spark/data/pagerank.py:24), which has no missing parents
+24/11/26 01:29:29 INFO MemoryStore: Block broadcast_9 stored as values in memory (estimated size 20.3 KiB, free 434.0 MiB)
+24/11/26 01:29:29 INFO MemoryStore: Block broadcast_9_piece0 stored as bytes in memory (estimated size 8.8 KiB, free 434.0 MiB)
+24/11/26 01:29:29 INFO BlockManagerInfo: Added broadcast_9_piece0 in memory on 355d0e55790e:33421 (size: 8.8 KiB, free: 434.3 MiB)
+24/11/26 01:29:29 INFO SparkContext: Created broadcast 9 from broadcast at DAGScheduler.scala:1223
+24/11/26 01:29:29 INFO DAGScheduler: Submitting 2 missing tasks from ShuffleMapStage 8 (PairwiseRDD[59] at reduceByKey at /opt/spark/data/pagerank.py:24) (first 15 tasks are for partitions Vector(0, 1))
+24/11/26 01:29:29 INFO TaskSchedulerImpl: Adding task set 8.0 with 2 tasks
+24/11/26 01:29:29 INFO TaskSetManager: Starting task 0.0 in stage 8.0 (TID 16, 355d0e55790e, executor driver, partition 0, NODE_LOCAL, 7322 bytes)
+24/11/26 01:29:29 INFO TaskSetManager: Starting task 1.0 in stage 8.0 (TID 17, 355d0e55790e, executor driver, partition 1, NODE_LOCAL, 7322 bytes)
+24/11/26 01:29:29 INFO Executor: Running task 0.0 in stage 8.0 (TID 16)
+24/11/26 01:29:29 INFO Executor: Running task 1.0 in stage 8.0 (TID 17)
+24/11/26 01:29:29 INFO ShuffleBlockFetcherIterator: Getting 2 (160.0 B) non-empty blocks including 2 (160.0 B) local and 0 (0.0 B) host-local and 0 (0.0 B) remote blocks
+24/11/26 01:29:29 INFO ShuffleBlockFetcherIterator: Started 0 remote fetches in 0 ms
+24/11/26 01:29:29 INFO ShuffleBlockFetcherIterator: Getting 2 (194.0 B) non-empty blocks including 2 (194.0 B) local and 0 (0.0 B) host-local and 0 (0.0 B) remote blocks
+24/11/26 01:29:29 INFO ShuffleBlockFetcherIterator: Started 0 remote fetches in 0 ms
+24/11/26 01:29:29 INFO PythonRunner: Times: total = 42, boot = -40, init = 82, finish = 0
+24/11/26 01:29:29 INFO PythonRunner: Times: total = 42, boot = -42, init = 83, finish = 1
+24/11/26 01:29:29 INFO ShuffleBlockFetcherIterator: Getting 2 (230.0 B) non-empty blocks including 2 (230.0 B) local and 0 (0.0 B) host-local and 0 (0.0 B) remote blocks
+24/11/26 01:29:29 INFO ShuffleBlockFetcherIterator: Getting 1 (80.0 B) non-empty blocks including 1 (80.0 B) local and 0 (0.0 B) host-local and 0 (0.0 B) remote blocks
+24/11/26 01:29:29 INFO ShuffleBlockFetcherIterator: Started 0 remote fetches in 0 ms
+24/11/26 01:29:29 INFO ShuffleBlockFetcherIterator: Started 0 remote fetches in 0 ms
+24/11/26 01:29:29 INFO PythonRunner: Times: total = 42, boot = 5, init = 37, finish = 0
+24/11/26 01:29:29 INFO PythonRunner: Times: total = 42, boot = 6, init = 36, finish = 0
+24/11/26 01:29:29 INFO PythonRunner: Times: total = 95, boot = -43, init = 137, finish = 1
+24/11/26 01:29:29 INFO Executor: Finished task 0.0 in stage 8.0 (TID 16). 1979 bytes result sent to driver
+24/11/26 01:29:29 INFO PythonRunner: Times: total = 94, boot = -43, init = 136, finish = 1
+24/11/26 01:29:29 INFO TaskSetManager: Finished task 0.0 in stage 8.0 (TID 16) in 112 ms on 355d0e55790e (executor driver) (1/2)
+24/11/26 01:29:29 INFO Executor: Finished task 1.0 in stage 8.0 (TID 17). 1979 bytes result sent to driver
+24/11/26 01:29:29 INFO TaskSetManager: Finished task 1.0 in stage 8.0 (TID 17) in 114 ms on 355d0e55790e (executor driver) (2/2)
+24/11/26 01:29:29 INFO TaskSchedulerImpl: Removed TaskSet 8.0, whose tasks have all completed, from pool 
+24/11/26 01:29:29 INFO DAGScheduler: ShuffleMapStage 8 (reduceByKey at /opt/spark/data/pagerank.py:24) finished in 0.135 s
+24/11/26 01:29:29 INFO DAGScheduler: looking for newly runnable stages
+24/11/26 01:29:29 INFO DAGScheduler: running: Set()
+24/11/26 01:29:29 INFO DAGScheduler: waiting: Set(ShuffleMapStage 9, ShuffleMapStage 10, ResultStage 11)
+24/11/26 01:29:29 INFO DAGScheduler: failed: Set()
+24/11/26 01:29:29 INFO DAGScheduler: Submitting ShuffleMapStage 9 (PairwiseRDD[66] at reduceByKey at /opt/spark/data/pagerank.py:24), which has no missing parents
+24/11/26 01:29:29 INFO MemoryStore: Block broadcast_10 stored as values in memory (estimated size 20.3 KiB, free 433.9 MiB)
+24/11/26 01:29:29 INFO MemoryStore: Block broadcast_10_piece0 stored as bytes in memory (estimated size 8.8 KiB, free 433.9 MiB)
+24/11/26 01:29:29 INFO BlockManagerInfo: Added broadcast_10_piece0 in memory on 355d0e55790e:33421 (size: 8.8 KiB, free: 434.3 MiB)
+24/11/26 01:29:29 INFO SparkContext: Created broadcast 10 from broadcast at DAGScheduler.scala:1223
+24/11/26 01:29:29 INFO DAGScheduler: Submitting 2 missing tasks from ShuffleMapStage 9 (PairwiseRDD[66] at reduceByKey at /opt/spark/data/pagerank.py:24) (first 15 tasks are for partitions Vector(0, 1))
+24/11/26 01:29:29 INFO TaskSchedulerImpl: Adding task set 9.0 with 2 tasks
+24/11/26 01:29:29 INFO TaskSetManager: Starting task 0.0 in stage 9.0 (TID 18, 355d0e55790e, executor driver, partition 0, NODE_LOCAL, 7322 bytes)
+24/11/26 01:29:29 INFO TaskSetManager: Starting task 1.0 in stage 9.0 (TID 19, 355d0e55790e, executor driver, partition 1, NODE_LOCAL, 7322 bytes)
+24/11/26 01:29:29 INFO Executor: Running task 1.0 in stage 9.0 (TID 19)
+24/11/26 01:29:29 INFO Executor: Running task 0.0 in stage 9.0 (TID 18)
+24/11/26 01:29:29 INFO ShuffleBlockFetcherIterator: Getting 2 (194.0 B) non-empty blocks including 2 (194.0 B) local and 0 (0.0 B) host-local and 0 (0.0 B) remote blocks
+24/11/26 01:29:29 INFO ShuffleBlockFetcherIterator: Started 0 remote fetches in 0 ms
+24/11/26 01:29:29 INFO ShuffleBlockFetcherIterator: Getting 2 (160.0 B) non-empty blocks including 2 (160.0 B) local and 0 (0.0 B) host-local and 0 (0.0 B) remote blocks
+24/11/26 01:29:29 INFO ShuffleBlockFetcherIterator: Started 0 remote fetches in 0 ms
+24/11/26 01:29:29 INFO PythonRunner: Times: total = 42, boot = -38, init = 79, finish = 1
+24/11/26 01:29:29 INFO PythonRunner: Times: total = 42, boot = -39, init = 81, finish = 0
+24/11/26 01:29:29 INFO ShuffleBlockFetcherIterator: Getting 1 (80.0 B) non-empty blocks including 1 (80.0 B) local and 0 (0.0 B) host-local and 0 (0.0 B) remote blocks
+24/11/26 01:29:29 INFO ShuffleBlockFetcherIterator: Getting 2 (230.0 B) non-empty blocks including 2 (230.0 B) local and 0 (0.0 B) host-local and 0 (0.0 B) remote blocks
+24/11/26 01:29:29 INFO ShuffleBlockFetcherIterator: Started 0 remote fetches in 0 ms
+24/11/26 01:29:29 INFO ShuffleBlockFetcherIterator: Started 0 remote fetches in 0 ms
+24/11/26 01:29:29 INFO PythonRunner: Times: total = 42, boot = 5, init = 37, finish = 0
+24/11/26 01:29:29 INFO PythonRunner: Times: total = 42, boot = 5, init = 37, finish = 0
+24/11/26 01:29:29 INFO PythonRunner: Times: total = 99, boot = -31, init = 129, finish = 1
+24/11/26 01:29:29 INFO Executor: Finished task 0.0 in stage 9.0 (TID 18). 1979 bytes result sent to driver
+24/11/26 01:29:29 INFO TaskSetManager: Finished task 0.0 in stage 9.0 (TID 18) in 115 ms on 355d0e55790e (executor driver) (1/2)
+24/11/26 01:29:29 INFO PythonRunner: Times: total = 99, boot = -31, init = 129, finish = 1
+24/11/26 01:29:30 INFO Executor: Finished task 1.0 in stage 9.0 (TID 19). 1979 bytes result sent to driver
+24/11/26 01:29:30 INFO TaskSetManager: Finished task 1.0 in stage 9.0 (TID 19) in 122 ms on 355d0e55790e (executor driver) (2/2)
+24/11/26 01:29:30 INFO TaskSchedulerImpl: Removed TaskSet 9.0, whose tasks have all completed, from pool 
+24/11/26 01:29:30 INFO DAGScheduler: ShuffleMapStage 9 (reduceByKey at /opt/spark/data/pagerank.py:24) finished in 0.138 s
+24/11/26 01:29:30 INFO DAGScheduler: looking for newly runnable stages
+24/11/26 01:29:30 INFO DAGScheduler: running: Set()
+24/11/26 01:29:30 INFO DAGScheduler: waiting: Set(ShuffleMapStage 10, ResultStage 11)
+24/11/26 01:29:30 INFO DAGScheduler: failed: Set()
+24/11/26 01:29:30 INFO DAGScheduler: Submitting ShuffleMapStage 10 (PairwiseRDD[73] at reduceByKey at /opt/spark/data/pagerank.py:24), which has no missing parents
+24/11/26 01:29:30 INFO MemoryStore: Block broadcast_11 stored as values in memory (estimated size 20.3 KiB, free 433.9 MiB)
+24/11/26 01:29:30 INFO MemoryStore: Block broadcast_11_piece0 stored as bytes in memory (estimated size 8.8 KiB, free 433.9 MiB)
+24/11/26 01:29:30 INFO BlockManagerInfo: Added broadcast_11_piece0 in memory on 355d0e55790e:33421 (size: 8.8 KiB, free: 434.3 MiB)
+24/11/26 01:29:30 INFO SparkContext: Created broadcast 11 from broadcast at DAGScheduler.scala:1223
+24/11/26 01:29:30 INFO DAGScheduler: Submitting 2 missing tasks from ShuffleMapStage 10 (PairwiseRDD[73] at reduceByKey at /opt/spark/data/pagerank.py:24) (first 15 tasks are for partitions Vector(0, 1))
+24/11/26 01:29:30 INFO TaskSchedulerImpl: Adding task set 10.0 with 2 tasks
+24/11/26 01:29:30 INFO TaskSetManager: Starting task 0.0 in stage 10.0 (TID 20, 355d0e55790e, executor driver, partition 0, NODE_LOCAL, 7322 bytes)
+24/11/26 01:29:30 INFO TaskSetManager: Starting task 1.0 in stage 10.0 (TID 21, 355d0e55790e, executor driver, partition 1, NODE_LOCAL, 7322 bytes)
+24/11/26 01:29:30 INFO Executor: Running task 1.0 in stage 10.0 (TID 21)
+24/11/26 01:29:30 INFO Executor: Running task 0.0 in stage 10.0 (TID 20)
+24/11/26 01:29:30 INFO ShuffleBlockFetcherIterator: Getting 2 (194.0 B) non-empty blocks including 2 (194.0 B) local and 0 (0.0 B) host-local and 0 (0.0 B) remote blocks
+24/11/26 01:29:30 INFO ShuffleBlockFetcherIterator: Started 0 remote fetches in 0 ms
+24/11/26 01:29:30 INFO ShuffleBlockFetcherIterator: Getting 2 (160.0 B) non-empty blocks including 2 (160.0 B) local and 0 (0.0 B) host-local and 0 (0.0 B) remote blocks
+24/11/26 01:29:30 INFO ShuffleBlockFetcherIterator: Started 0 remote fetches in 1 ms
+24/11/26 01:29:30 INFO PythonRunner: Times: total = 42, boot = -36, init = 78, finish = 0
+24/11/26 01:29:30 INFO PythonRunner: Times: total = 43, boot = -38, init = 81, finish = 0
+24/11/26 01:29:30 INFO ShuffleBlockFetcherIterator: Getting 1 (80.0 B) non-empty blocks including 1 (80.0 B) local and 0 (0.0 B) host-local and 0 (0.0 B) remote blocks
+24/11/26 01:29:30 INFO ShuffleBlockFetcherIterator: Started 0 remote fetches in 0 ms
+24/11/26 01:29:30 INFO ShuffleBlockFetcherIterator: Getting 2 (230.0 B) non-empty blocks including 2 (230.0 B) local and 0 (0.0 B) host-local and 0 (0.0 B) remote blocks
+24/11/26 01:29:30 INFO ShuffleBlockFetcherIterator: Started 0 remote fetches in 0 ms
+24/11/26 01:29:30 INFO PythonRunner: Times: total = 44, boot = 6, init = 37, finish = 1
+24/11/26 01:29:30 INFO PythonRunner: Times: total = 43, boot = 5, init = 37, finish = 1
+24/11/26 01:29:30 INFO PythonRunner: Times: total = 101, boot = -31, init = 130, finish = 2
+24/11/26 01:29:30 INFO Executor: Finished task 0.0 in stage 10.0 (TID 20). 1979 bytes result sent to driver
+24/11/26 01:29:30 INFO PythonRunner: Times: total = 103, boot = -33, init = 134, finish = 2
+24/11/26 01:29:30 INFO TaskSetManager: Finished task 0.0 in stage 10.0 (TID 20) in 130 ms on 355d0e55790e (executor driver) (1/2)
+24/11/26 01:29:30 INFO Executor: Finished task 1.0 in stage 10.0 (TID 21). 1979 bytes result sent to driver
+24/11/26 01:29:30 INFO TaskSetManager: Finished task 1.0 in stage 10.0 (TID 21) in 139 ms on 355d0e55790e (executor driver) (2/2)
+24/11/26 01:29:30 INFO TaskSchedulerImpl: Removed TaskSet 10.0, whose tasks have all completed, from pool 
+24/11/26 01:29:30 INFO DAGScheduler: ShuffleMapStage 10 (reduceByKey at /opt/spark/data/pagerank.py:24) finished in 0.154 s
+24/11/26 01:29:30 INFO DAGScheduler: looking for newly runnable stages
+24/11/26 01:29:30 INFO DAGScheduler: running: Set()
+24/11/26 01:29:30 INFO DAGScheduler: waiting: Set(ResultStage 11)
+24/11/26 01:29:30 INFO DAGScheduler: failed: Set()
+24/11/26 01:29:30 INFO DAGScheduler: Submitting ResultStage 11 (PythonRDD[76] at collect at /opt/spark/data/pagerank.py:29), which has no missing parents
+24/11/26 01:29:30 INFO MemoryStore: Block broadcast_12 stored as values in memory (estimated size 8.9 KiB, free 433.9 MiB)
+24/11/26 01:29:30 INFO MemoryStore: Block broadcast_12_piece0 stored as bytes in memory (estimated size 5.2 KiB, free 433.9 MiB)
+24/11/26 01:29:30 INFO BlockManagerInfo: Added broadcast_12_piece0 in memory on 355d0e55790e:33421 (size: 5.2 KiB, free: 434.3 MiB)
+24/11/26 01:29:30 INFO SparkContext: Created broadcast 12 from broadcast at DAGScheduler.scala:1223
+24/11/26 01:29:30 INFO DAGScheduler: Submitting 2 missing tasks from ResultStage 11 (PythonRDD[76] at collect at /opt/spark/data/pagerank.py:29) (first 15 tasks are for partitions Vector(0, 1))
+24/11/26 01:29:30 INFO TaskSchedulerImpl: Adding task set 11.0 with 2 tasks
+24/11/26 01:29:30 INFO TaskSetManager: Starting task 0.0 in stage 11.0 (TID 22, 355d0e55790e, executor driver, partition 0, NODE_LOCAL, 7143 bytes)
+24/11/26 01:29:30 INFO TaskSetManager: Starting task 1.0 in stage 11.0 (TID 23, 355d0e55790e, executor driver, partition 1, NODE_LOCAL, 7143 bytes)
+24/11/26 01:29:30 INFO Executor: Running task 0.0 in stage 11.0 (TID 22)
+24/11/26 01:29:30 INFO Executor: Running task 1.0 in stage 11.0 (TID 23)
+24/11/26 01:29:30 INFO ShuffleBlockFetcherIterator: Getting 1 (80.0 B) non-empty blocks including 1 (80.0 B) local and 0 (0.0 B) host-local and 0 (0.0 B) remote blocks
+24/11/26 01:29:30 INFO ShuffleBlockFetcherIterator: Getting 2 (230.0 B) non-empty blocks including 2 (230.0 B) local and 0 (0.0 B) host-local and 0 (0.0 B) remote blocks
+24/11/26 01:29:30 INFO ShuffleBlockFetcherIterator: Started 0 remote fetches in 1 ms
+24/11/26 01:29:30 INFO ShuffleBlockFetcherIterator: Started 0 remote fetches in 1 ms
+24/11/26 01:29:30 INFO PythonRunner: Times: total = 43, boot = -91, init = 134, finish = 0
+24/11/26 01:29:30 INFO PythonRunner: Times: total = 43, boot = -96, init = 139, finish = 0
+24/11/26 01:29:30 INFO Executor: Finished task 0.0 in stage 11.0 (TID 22). 1820 bytes result sent to driver
+24/11/26 01:29:30 INFO Executor: Finished task 1.0 in stage 11.0 (TID 23). 1932 bytes result sent to driver
+24/11/26 01:29:30 INFO TaskSetManager: Finished task 0.0 in stage 11.0 (TID 22) in 77 ms on 355d0e55790e (executor driver) (1/2)
+24/11/26 01:29:30 INFO TaskSetManager: Finished task 1.0 in stage 11.0 (TID 23) in 73 ms on 355d0e55790e (executor driver) (2/2)
+24/11/26 01:29:30 INFO TaskSchedulerImpl: Removed TaskSet 11.0, whose tasks have all completed, from pool 
+24/11/26 01:29:30 INFO DAGScheduler: ResultStage 11 (collect at /opt/spark/data/pagerank.py:29) finished in 0.112 s
+24/11/26 01:29:30 INFO DAGScheduler: Job 0 is finished. Cancelling potential speculative or zombie tasks for this job
+24/11/26 01:29:30 INFO TaskSchedulerImpl: Killing all running tasks in stage 11: Stage finished
+24/11/26 01:29:30 INFO DAGScheduler: Job 0 finished: collect at /opt/spark/data/pagerank.py:29, took 3.003036 s
+Results saved to /opt/spark/data/output_ranks.txt
+24/11/26 01:29:30 INFO SparkUI: Stopped Spark web UI at http://355d0e55790e:4040
+24/11/26 01:29:30 INFO MapOutputTrackerMasterEndpoint: MapOutputTrackerMasterEndpoint stopped!
+24/11/26 01:29:30 INFO MemoryStore: MemoryStore cleared
+24/11/26 01:29:30 INFO BlockManager: BlockManager stopped
+24/11/26 01:29:30 INFO BlockManagerMaster: BlockManagerMaster stopped
+24/11/26 01:29:30 INFO OutputCommitCoordinator$OutputCommitCoordinatorEndpoint: OutputCommitCoordinator stopped!
+24/11/26 01:29:30 INFO SparkContext: Successfully stopped SparkContext
+24/11/26 01:29:31 INFO ShutdownHookManager: Shutdown hook called
+24/11/26 01:29:31 INFO ShutdownHookManager: Deleting directory /tmp/spark-560192d9-9141-4452-a23c-971b9d734d3c
+24/11/26 01:29:31 INFO ShutdownHookManager: Deleting directory /tmp/spark-de446e90-5ed5-47c2-9e19-ff513290f3c3
+24/11/26 01:29:31 INFO ShutdownHookManager: Deleting directory /tmp/spark-de446e90-5ed5-47c2-9e19-ff513290f3c3/pyspark-64bc9a36-3339-40ce-b5da-15c38c2d8d42
