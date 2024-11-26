@@ -121,16 +121,25 @@ docker ps -a
 4. Copy all the .py files and the Testcase dictionary.txt files to the master container in Spark
 
 ```sh
-docker cp /path/to/files Container_ID:/opt/spark/data/
+docker cp /path/to/files docker-spark-cluster_spark-master_1:/opt/spark/data/
 ```
 
 5. Switch to the original terminal on the Spark master
 
 ```sh
-docker exec -it docker-spark-cluster-spark-master-1 bash
+docker exec -it docker-spark-cluster_spark-master_1 bash
+cd data
+export PATH=/opt/spark/bin:$PATH
 ```
 
-6. Execute PageRank in Spark and check the output results
+6. Setting environment path in Spark master container
+
+```sh
+cd data
+export PATH=/opt/spark/bin:$PATH
+```
+
+7. Execute PageRank in Spark and check the output results
 
 ```sh
 spark-submit /opt/spark/data/pagerank.py
