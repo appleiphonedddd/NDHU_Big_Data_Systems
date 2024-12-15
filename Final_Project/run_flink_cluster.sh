@@ -1,7 +1,7 @@
 #!/bin/bash
 
 FLINK_PROPERTIES="jobmanager.rpc.address: jobmanager"
-DEFAULT_TASKMANAGERS=2  # Default number of TaskManagers
+DEFAULT_TASKMANAGERS=2
 
 # Function to display usage
 function usage() {
@@ -35,7 +35,7 @@ else
   echo "flink-network already exists. Skipping creation."
 fi
 
-# Start the JobManager container (detached mode)
+# Start the JobManager container
 echo "Starting JobManager container..."
 docker run \
     -d \
@@ -44,7 +44,7 @@ docker run \
     --network flink-network \
     --publish 8081:8081 \
     --env FLINK_PROPERTIES="${FLINK_PROPERTIES}" \
-    flink:latest jobmanager
+    flink-python:latest jobmanager
 
 # Start the specified number of TaskManager containers
 echo "Starting $NUM_TASKMANAGERS TaskManager containers..."
@@ -55,7 +55,7 @@ for i in $(seq 1 "$NUM_TASKMANAGERS"); do
       --name=taskmanager-$i \
       --network flink-network \
       --env FLINK_PROPERTIES="${FLINK_PROPERTIES}" \
-      flink:latest taskmanager
+      flink-python:latest taskmanager
   echo "TaskManager-$i started."
 done
 
