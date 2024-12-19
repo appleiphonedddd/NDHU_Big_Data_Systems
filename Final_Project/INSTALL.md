@@ -58,10 +58,10 @@ docker build -t flink-python:latest .
 ./run_flink_cluster.sh number of taskmanager
 ```
 
-3. Enter Master container
+4. Deploy file to container
 
 ```sh
-docker exec -it jobmanager bash
+./deploy_files.sh
 ```
 
 4. Enter Master container
@@ -70,8 +70,20 @@ docker exec -it jobmanager bash
 docker exec -it jobmanager bash
 ```
 
-5. Deploy file to container
+5. Create a symbolic link for python to point to python3
 
 ```sh
-./deploy_files.sh
+ln -s /usr/bin/python3 /usr/bin/python
+```
+
+6. Verify the Python version
+
+```sh
+python --version
+```
+
+7. Execute python file
+
+```sh
+pythons filename.py
 ```
