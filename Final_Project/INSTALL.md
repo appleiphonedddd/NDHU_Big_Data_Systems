@@ -37,11 +37,20 @@ sudo apt-get update
 
 ```
 filetree 
+├── average_temperature_trend.py
+├── data.csv
+├── deploy_files.sh
 ├── docker-cmd.sh
 ├── Dockerfile
+├── find_max_rainfall.py
+├── heavy_rain_analysis.py
 ├── INSTALL.md
-├── run_flink_cluster.sh
-└── submit_job.sh
+├── requirement.txt
+├── Result
+│   ├── average_temperature_trend_Bahia.png
+│   ├── heavy_rain_days_pie_by_state.png
+│   └── max_rainfall_by_state.png
+└── run_flink_cluster.sh
 ```
 
 ### Deployment
