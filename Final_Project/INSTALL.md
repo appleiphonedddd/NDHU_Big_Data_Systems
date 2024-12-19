@@ -57,3 +57,21 @@ docker build -t flink-python:latest .
 ```sh
 ./run_flink_cluster.sh number of taskmanager
 ```
+
+3. Enter Master container
+
+```sh
+docker exec -it jobmanager bash
+```
+
+4. Enter Master container
+
+```sh
+docker exec -it jobmanager bash
+```
+
+5. Deploy file to container
+
+```sh
+./deploy_files.sh
+```
