@@ -8,6 +8,8 @@
 - [Getting Started](#Getting-Started)
   - [Assignment 1](#Assignment-1)
   - [Assignment 2](#Assignment-2)
+  - [Assignment 3](#Assignment-3)
+  - [Final_Project](#Final_Project)
 - [Frameworks Used](#Frameworks-Used)
 - [Author](#Author)
 
@@ -21,11 +23,22 @@
 
 - [Installation](Assignment2/INSTALL.md)
 
+###### **Assignment-3**
+
+- [Installation](Assignment3/INSTALL.md)
+
+###### **Final_Project**
+
+- [Installation](Final_Project/INSTALL.md)
+
 
 ### Frameworks Used
 
 - [Apache Hadoop](https://hadoop.apache.org/)
 - [Apache Spark](https://spark.apache.org/)
+- [Apache Flink](https://flink.apache.org/)
+- [Apache Hbase](https://hbase.apache.org/)
+- [Docker](https://www.docker.com/)
 
 ### Author
 
