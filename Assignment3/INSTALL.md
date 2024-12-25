@@ -15,7 +15,7 @@
 ###### Requirements
 
 1. Ubuntu 24.04
-2. Flink
+2. Spark
 3. Hbase
 
 ###### **Installation**
@@ -59,6 +59,7 @@ filetree
 │   ├── ID.txt
 │   ├── Peak_hour.txt
 │   └── top10.txt
+├── Report.pdf
 ├── Result
 │   ├── ID.png
 │   ├── Peak_hour.png
