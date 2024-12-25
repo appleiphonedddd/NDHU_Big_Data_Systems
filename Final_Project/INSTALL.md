@@ -1,6 +1,6 @@
-# Final+Project
+# Final Project
 
-`Final+Project` project belongs to the Big Data Systems at National Dong Hwa University. The purpose of this project is to set up and operate a Spark cluster to process large datasets and implement core big data algorithms and provides instructions for setting up the cluster, running the project, and understanding its key components
+`Final Project` project belongs to the Big Data Systems at National Dong Hwa University. The purpose of this project is to set up and operate a Spark cluster to process large datasets and implement core big data algorithms and provides instructions for setting up the cluster, running the project, and understanding its key components
 
 
 ## Contents
@@ -95,4 +95,10 @@ python --version
 
 ```sh
 pythons filename.py
+```
+
+8. Submit to flink cluster
+
+```sh
+./bin/flink run --python filname.py --pyExecutable /usr/bin/python3
 ```
